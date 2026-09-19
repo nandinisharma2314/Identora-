@@ -26,6 +26,9 @@ ARG NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
 # Next.js telemetry is disabled
 ENV NEXT_TELEMETRY_DISABLED=1
 
+# Copy environment variables for build time (e.g. Supabase URLs needed for prerendering)
+COPY .env* ./
+
 RUN npm run build
 
 # Production image, copy all the files and run next
