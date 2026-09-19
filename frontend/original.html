@@ -1,0 +1,3423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Poppins, sans-serif;
+            background: #FFF8F5;
+        }
+
+        .heading {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* CONTACT SECTION */
+
+        #contact {
+
+            background: linear-gradient(180deg, #FFF8F5 0%, #FFFDFC 100%);
+
+        }
+
+        #contact input,
+        #contact textarea {
+
+            transition: .35s;
+
+        }
+
+        #contact input:hover,
+        #contact textarea:hover {
+
+            border-color: #f472b6;
+
+        }
+
+        #contact input:focus,
+        #contact textarea:focus {
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 12px 35px rgba(244, 114, 182, .15);
+
+        }
+
+        #contact .group:hover {
+
+            transform: translateY(-5px);
+
+        }
+
+        #contact button {
+
+            transition: .35s;
+
+        }
+
+        #contact button:hover {
+
+            box-shadow: 0 18px 40px rgba(244, 114, 182, .35);
+
+        }
+
+        /* Hide default cursor */
+
+        * {
+            cursor: none;
+        }
+
+        @media(max-width:768px) {
+
+            * {
+                cursor: auto;
+            }
+
+            .cursor-dot,
+            .cursor-outline {
+                display: none;
+            }
+
+        }
+
+        .cursor-dot {
+
+            width: 10px;
+            height: 10px;
+            background: #EC7F9E;
+            position: fixed;
+            left: 0;
+            top: 0;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%);
+            transition: transform .2s;
+        }
+
+        .cursor-outline {
+
+            width: 42px;
+            height: 42px;
+            border: 2px solid #EC7F9E;
+            position: fixed;
+            left: 0;
+            top: 0;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99998;
+            transform: translate(-50%, -50%);
+            transition:
+                width .3s,
+                height .3s,
+                background .3s,
+                border .3s;
+
+            backdrop-filter: blur(2px);
+
+            background: rgba(236, 127, 158, .12);
+
+            box-shadow:
+
+                0 0 18px rgba(236, 127, 158, .35),
+
+                0 0 40px rgba(236, 127, 158, .2);
+
+        }
+
+        /* ================= SERVICE MODALS ================= */
+
+        .svc-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(45, 27, 27, 0.55);
+            backdrop-filter: blur(6px);
+            z-index: 9000;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .35s;
+        }
+
+        .svc-modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .svc-modal {
+            background: #FFF8F5;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 32px 32px 0 0;
+            padding: 48px 48px 56px;
+            transform: translateY(60px);
+            transition: transform .45s cubic-bezier(.22, .68, 0, 1.2);
+            position: relative;
+            scrollbar-width: thin;
+            scrollbar-color: #EC7F9E #FFF0F5;
+        }
+
+        .svc-modal-overlay.active .svc-modal {
+            transform: translateY(0);
+        }
+
+        .svc-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #FFE8F0;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer !important;
+            transition: .3s;
+            font-size: 20px;
+            color: #EC7F9E;
+        }
+
+        .svc-modal-close:hover {
+            background: #EC7F9E;
+            color: #fff;
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .svc-stat-card {
+            transition: .35s;
+        }
+
+        .svc-stat-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(236, 127, 158, .2);
+        }
+
+        .svc-item-card {
+            transition: .35s;
+        }
+
+        .svc-item-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 35px rgba(236, 127, 158, .2);
+        }
+
+        .svc-process-step {
+            transition: .3s;
+        }
+
+        .svc-process-step:hover {
+            transform: translateX(6px);
+        }
+
+        .svc-tool-badge {
+            transition: .3s;
+        }
+
+        .svc-tool-badge:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(236, 127, 158, .2);
+        }
+
+        @media(max-width:640px) {
+            .svc-modal {
+                padding: 32px 20px 40px;
+                border-radius: 24px 24px 0 0;
+            }
+        }
+
+        /* Portfolio Cards */
+
+        .portfolio-card {
+
+            overflow: hidden;
+
+            border-radius: 24px;
+
+            transition: .5s;
+
+        }
+
+        .portfolio-card img {
+
+            transition: 1s;
+
+        }
+
+        .portfolio-card:hover img {
+
+            transform: scale(1.08);
+
+        }
+
+        .portfolio-card:hover {
+
+            transform: translateY(-10px);
+
+            box-shadow: 0 20px 45px rgba(0, 0, 0, .12);
+
+        }
+
+        /* Filter Buttons */
+
+        .filter-btn {
+
+            transition: .3s;
+
+        }
+
+        .filter-btn:hover {
+
+            background: #EC7F9E;
+
+            color: #fff;
+
+            transform: translateY(-3px);
+
+        }
+
+        /* View More */
+
+        .view-btn {
+
+            transition: .35s;
+
+        }
+
+        .view-btn:hover {
+
+            box-shadow: 0 18px 35px rgba(236, 127, 158, .35);
+
+        }
+
+        /* ================= TESTIMONIALS ================= */
+
+        .testimonial-card {
+
+            transition: .45s ease;
+
+        }
+
+        .testimonial-card:hover {
+
+            transform: translateY(-12px);
+
+            box-shadow: 0 25px 45px rgba(236, 127, 158, .18);
+
+        }
+
+        .testimonial-card img {
+
+            transition: .5s;
+
+        }
+
+        .testimonial-card:hover img {
+
+            transform: scale(1.08);
+
+        }
+
+        .testimonial-btn {
+
+            transition: .35s;
+
+        }
+
+        .testimonial-btn:hover {
+
+            box-shadow: 0 15px 35px rgba(236, 127, 158, .35);
+
+        }
+
+        #testimonials {
+
+            background:
+
+                radial-gradient(circle at top left, #fff7f5 0%, #fff8f5 35%, #fffdfc 100%);
+
+        }
+    </style>
+
+    <title>Portfolio Hero</title>
+
+</head>
+
+<body id="home">
+
+    <!-- HEADER -->
+
+    <header class="w-full sticky top-0 bg-[#FFF8F5] z-50">
+
+        <div class="max-w-7xl mx-auto px-8 flex items-center justify-between">
+
+            <div class="text-3xl font-bold text-pink-500">
+                <img src="assest/img/logo.png" width="100" class="w-[120px]" alt="">
+            </div>
+
+            <nav class="hidden lg:flex gap-10 text-gray-700">
+
+                <a href="#home" class="text-pink-500 border-b-2 border-pink-400 pb-1">
+                    Home
+                </a>
+
+                <a href="#about">About</a>
+                <a href="#service">Services</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#testi">Testimonials</a>
+                <a href="#">Blog</a>
+                <a href="#contact">Contact</a>
+
+            </nav>
+
+            <div class="flex items-center gap-4">
+
+                <button onclick="openPopup()" class="bg-pink-200 hover:bg-pink-300 rounded-full px-7 py-3 flex items-center gap-2">
+
+                    <i data-lucide="send" class="w-4 h-4"></i>
+
+                    <span>Let's Connect</span>
+
+                </button>
+
+            </div>
+
+                    <!-- Mobile Button -->
+                <button id="menuBtn" class="lg:hidden text-2xl">
+                    ☰
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden flex-row bg-[#FFF8F5] px-6 py-4 space-y-4 lg:hidden">
+                <p><a href="#home">Home</a></p>
+                <p><a href="#about">About</a></p>
+                <p><a href="#service">Services</a></p>
+                <p><a href="#portfolio">Portfolio</a></p>
+                <p><a href="#contact">Contact</a></p>
+            </div>
+
+        </div>
+        <script>
+            document.getElementById("menuBtn").onclick = () => {
+                document.getElementById("mobileMenu").classList.toggle("hidden");
+            };
+        </script>
+    </header>
+
+    <!-- HERO -->
+
+    <section class="max-w-7xl mx-auto px-8">
+
+        <div class="grid lg:grid-cols-2 items-center min-h-[85vh]">
+
+            <!-- LEFT -->
+
+            <div>
+
+                <p class="text-4xl italic mb-5">
+                    Hi, I'm
+                </p>
+
+                <h1 class="heading text-7xl font-bold text-[#2D1B1B] leading-tight">
+
+                    Harshika Jain
+
+                </h1>
+
+                <h3 class="text-pink-500 text-3xl mt-4 font-medium">
+
+                    Digital Marketer |
+                    Creative Designer
+
+                </h3>
+
+                <p class="mt-10 text-2xl text-gray-700 leading-10 max-w-lg">
+
+                    Helping brands grow through creativity &
+                    strategy.
+
+                </p>
+
+                <div class="flex gap-6 mt-12">
+
+                    <a href="#portfolio"
+                        class="bg-pink-500 text-white px-8 py-4 rounded-xl shadow-lg flex items-center gap-3 hover:scale-105 duration-300">
+
+                        <span>View Portfolio</span>
+
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+
+                    </a>
+
+                    <a onclick="openPopup()"
+                        class="border border-pink-300 px-8 py-4 rounded-xl flex items-center gap-3 hover:bg-pink-100 duration-300">
+
+                        <span>Let's Connect</span>
+
+                        <i data-lucide="heart" class="w-5 h-5 text-pink-500 fill-pink-500"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT -->
+
+            <div class="relative flex justify-center">
+
+                <div class="absolute w-[520px] h-[520px] bg-pink-100 rounded-full">
+
+                </div>
+
+                <img src="assest/img/girl.png" class="relative z-10 w-[500px]" />
+
+                <!-- Floating Card -->
+
+                <div class="absolute z-10 top-8 left-0 bg-white rounded-2xl shadow-xl  px-3 py-2">
+
+                    <p class="font-semibold">
+
+                        Creative Strategy
+
+                    </p>
+
+                    <div class="mt-4 flex gap-2 items-end">
+
+                        <div class="w-4 h-4 bg-pink-200"></div>
+
+                        <div class="w-4 h-6 bg-pink-300"></div>
+
+                        <div class="w-4 h-9 bg-pink-400"></div>
+
+                        <div class="w-4 h-14 bg-pink-500"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+
+    <section class="max-w-6xl mx-auto pb-10">
+
+        <div class="bg-white rounded-3xl shadow-xl grid grid-cols-2 lg:grid-cols-4 divide-x">
+
+            <div class="text-center py-8">
+
+                <div class="w-14 h-14 rounded-full bg-pink-100 mx-auto flex items-center justify-center">
+
+                    <i data-lucide="target" class="w-6 h-6 text-pink-500"></i>
+
+                </div>
+
+                <h3 class="font-semibold mt-3">
+                    Strategic Approach
+                </h3>
+
+            </div>
+
+            <div class="text-center py-8">
+
+                <div class="w-14 h-14 rounded-full bg-pink-100 mx-auto flex items-center justify-center">
+
+                    <i data-lucide="pen-tool" class="w-6 h-6 text-pink-500"></i>
+
+                </div>
+
+                <h3 class="font-semibold mt-3">
+                    Creative Solutions
+                </h3>
+
+            </div>
+
+            <div class="text-center py-8">
+
+                <div class="w-14 h-14 rounded-full bg-pink-100 mx-auto flex items-center justify-center">
+
+                    <i data-lucide="bar-chart-3" class="w-6 h-6 text-pink-500"></i>
+
+                </div>
+
+                <h3 class="font-semibold mt-3">
+                    Data Driven Results
+                </h3>
+
+            </div>
+
+            <div class="text-center py-8">
+
+                <div class="w-14 h-14 rounded-full bg-pink-100 mx-auto flex items-center justify-center">
+
+                    <i data-lucide="heart-handshake" class="w-6 h-6 text-pink-500"></i>
+
+                </div>
+
+                <h3 class="font-semibold mt-3">
+                    Client Focused
+                </h3>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================== ABOUT SECTION ===================== -->
+
+    <section id="about" class="py-24 bg-[#FFF8F5] overflow-hidden">
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+                <!-- LEFT IMAGE -->
+
+                <div class="relative flex justify-center">
+
+                    <!-- Background Shape -->
+
+                    <div class="absolute w-[430px] h-[520px] rounded-t-full bg-pink-100"></div>
+
+                    <!-- Floating Badge -->
+
+                    <div class="absolute bottom-28 left-0 bg-white rounded-3xl shadow-xl px-5 py-6 z-20">
+
+                        <p class="text-gray-700 font-medium leading-8">
+
+                            Passionate <br>
+                            Creative <br>
+                            Strategic
+
+                        </p>
+
+                    </div>
+
+                    <!-- Main Image -->
+
+                    <img src="assest/img/girl2.png" class="relative z-10 w-[430px]" alt="Harshika Jain">
+
+                </div>
+
+                <!-- RIGHT CONTENT -->
+
+                <div>
+
+                    <p class="uppercase tracking-[4px] text-pink-500 font-semibold flex items-center gap-2">
+
+                        ABOUT ME
+
+                        <i data-lucide="heart" class="w-5 h-5"></i>
+
+                    </p>
+
+                    <h2 class="heading text-6xl leading-tight mt-4 text-[#2D1B1B]">
+
+                        More Than a
+
+                        <span class="text-pink-400">
+
+                            Marketer
+
+                        </span>
+
+                    </h2>
+
+                    <div class="w-40 h-1 bg-pink-300 rounded-full mt-4 mb-8"></div>
+
+                    <p class="text-lg text-gray-700 leading-9">
+
+                        I'm
+
+                        <span class="font-semibold text-pink-500">
+
+                            Harshika Jain
+
+                        </span>
+
+                        — a passionate Digital Marketer and Creative
+                        Designer helping brands grow with strategic
+                        marketing, creative storytelling, engaging
+                        content and impactful digital experiences.
+
+                    </p>
+
+                    <!-- ===================== ABOUT CARDS ===================== -->
+
+                </div>
+
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mt-10">
+
+                <!-- Experience Card -->
+
+                <article
+                    class="bg-white rounded-3xl p-7 shadow-sm hover:shadow-xl hover:-translate-y-2 transition duration-300">
+
+                    <div class="flex items-center gap-4">
+
+                        <div class="w-14 h-14 rounded-full bg-pink-100 flex items-center justify-center">
+
+                            <i data-lucide="briefcase" class="w-6 h-6 text-pink-500"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3 class="text-2xl font-semibold text-[#2D1B1B]">
+
+                                Experience
+
+                            </h3>
+
+                            <div class="w-16 h-1 bg-pink-300 rounded-full mt-2"></div>
+
+                        </div>
+
+                    </div>
+
+                    <p class="mt-6 text-pink-500 font-semibold">
+
+                        2+ Internships Completed
+
+                    </p>
+
+                    <p class="text-gray-600 leading-8 mt-3">
+
+                        Worked as a Social Media Marketing Intern,
+                        managing content creation, branding,
+                        audience engagement and digital campaigns
+                        for growing businesses.
+
+                    </p>
+
+                </article>
+
+
+                <!-- Skills Card -->
+
+                <article
+                    class="bg-white rounded-3xl p-7 shadow-sm hover:shadow-xl hover:-translate-y-2 transition duration-300">
+
+                    <div class="flex items-center gap-4">
+
+                        <div class="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center">
+
+                            <i data-lucide="star" class="w-6 h-6 text-green-600"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3 class="text-2xl font-semibold text-[#2D1B1B]">
+
+                                Skills
+
+                            </h3>
+
+                            <div class="w-16 h-1 bg-green-300 rounded-full mt-2"></div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-y-4 gap-x-6 mt-6">
+
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-green-500"></i>
+                            <span class="text-gray-700">Social Media Marketing</span>
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-green-500"></i>
+                            <span class="text-gray-700">SEO & SEM</span>
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-green-500"></i>
+                            <span class="text-gray-700">Graphic Designing</span>
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-green-500"></i>
+                            <span class="text-gray-700">Meta Ads</span>
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-green-500"></i>
+                            <span class="text-gray-700">Content Creation</span>
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-green-500"></i>
+                            <span class="text-gray-700">Google Ads</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Creative Thinking -->
+
+                <article
+                    class="bg-white rounded-3xl p-7 shadow-sm hover:shadow-xl hover:-translate-y-2 transition duration-300">
+
+                    <div class="flex items-center gap-4">
+
+                        <div class="w-14 h-14 rounded-full bg-purple-100 flex items-center justify-center">
+
+                            <i data-lucide="lightbulb" class="w-6 h-6 text-purple-600"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3 class="text-2xl font-semibold text-[#2D1B1B]">
+
+                                Creative Thinking
+
+                            </h3>
+
+                            <div class="w-16 h-1 bg-purple-300 rounded-full mt-2"></div>
+
+                        </div>
+
+                    </div>
+
+                    <p class="text-gray-600 leading-8 mt-6">
+
+                        Creating unique ideas and visually appealing
+                        designs that connect brands with audiences,
+                        improve engagement and leave a lasting impression.
+
+                    </p>
+
+                </article>
+
+
+                <!-- Strategy -->
+
+                <article
+                    class="bg-white rounded-3xl p-7 shadow-sm hover:shadow-xl hover:-translate-y-2 transition duration-300">
+
+                    <div class="flex items-center gap-4">
+
+                        <div class="w-14 h-14 rounded-full bg-orange-100 flex items-center justify-center">
+
+                            <i data-lucide="target" class="w-6 h-6 text-orange-600"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3 class="text-2xl font-semibold text-[#2D1B1B]">
+
+                                Strategy + Design
+
+                            </h3>
+
+                            <div class="w-16 h-1 bg-orange-300 rounded-full mt-2"></div>
+
+                        </div>
+
+                    </div>
+
+                    <p class="text-gray-600 leading-8 mt-6">
+
+                        Combining creativity with data-driven strategy
+                        to build meaningful digital experiences that
+                        increase brand visibility and measurable growth.
+
+                    </p>
+
+                </article>
+
+            </div>
+
+            <!-- ===================== QUOTE BANNER ===================== -->
+
+            <div
+                class="mt-10 bg-gradient-to-r from-pink-50 via-white to-pink-50 rounded-full shadow-md border border-pink-100 px-8 py-6 flex flex-col lg:flex-row items-center justify-between gap-6">
+
+                <!-- Left -->
+
+                <div class="flex items-center gap-5">
+
+                    <div class="w-16 h-16 rounded-full bg-white shadow flex items-center justify-center">
+
+                        <i data-lucide="quote" class="w-8 h-8 text-pink-500"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h4 class="text-2xl font-semibold text-pink-500">
+
+                            Creativity. Strategy. Results.
+
+                        </h4>
+
+                        <p class="text-gray-600 mt-1">
+
+                            Everything your brand needs to grow digitally.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- Divider -->
+
+                <div class="hidden lg:block h-16 w-px bg-pink-200"></div>
+
+                <!-- Right -->
+
+                <div class="text-center">
+
+                    <h3 class="heading text-4xl text-[#2D1B1B]">
+
+                        Let's Grow Together!
+
+                        <span class="text-pink-400">♡</span>
+
+                    </h3>
+
+                </div>
+
+            </div>
+
+            <!-- Decorative Sparkles -->
+
+            <div class="absolute top-16 right-10 hidden lg:block animate-pulse">
+
+                <i data-lucide="sparkles" class="w-10 h-10 text-pink-300"></i>
+
+            </div>
+
+            <div class="absolute bottom-10 left-10 hidden lg:block animate-pulse">
+
+                <i data-lucide="flower-2" class="w-12 h-12 text-pink-200"></i>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- SERVICES -->
+
+    <section id="service" class="py-12 lg:py-24 bg-[#FFF8F5]">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Heading -->
+        <div class="text-center mb-10 lg:mb-16">
+
+            <p class="uppercase tracking-[3px] lg:tracking-[4px] text-pink-500 font-semibold flex justify-center items-center gap-2 text-sm lg:text-base">
+                WHAT I DO
+            </p>
+
+            <h2 class="heading text-3xl sm:text-4xl lg:text-6xl mt-3">
+                Services
+                <span class="text-pink-400">I Offer</span>
+            </h2>
+
+            <p class="mt-4 text-gray-600 text-sm sm:text-base lg:text-lg">
+                Creative solutions to
+                <span class="text-pink-500 font-semibold">elevate</span>
+                your brand and grow your business.
+            </p>
+
+        </div>
+
+        <!-- Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+
+            <!-- CARD -->
+            <div class="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 shadow-md hover:-translate-y-2 hover:shadow-xl duration-300">
+
+                <div class="flex gap-4">
+
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-pink-100 flex justify-center items-center flex-shrink-0">
+                        <i class="bi bi-phone text-xl sm:text-2xl text-pink-500"></i>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg sm:text-xl lg:text-2xl font-semibold">
+                            Social Media Management
+                        </h3>
+
+                        <div class="w-16 h-1 bg-pink-200 mt-2 mb-3 rounded-full"></div>
+
+                        <p class="text-gray-600 text-sm sm:text-base leading-6">
+                            From content planning to community engagement,
+                            we manage your social presence that converts.
+                        </p>
+                    </div>
+
+                </div>
+
+                <button onclick="openModal('modal-smm')" style="cursor:pointer !important;"
+                        class="flex items-center justify-between mt-8 text-pink-500 font-semibold w-full">
+
+                        Learn More
+
+                        <div class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center">
+
+                            <i data-lucide="arrow-right"></i>
+
+                        </div>
+
+                    </button>
+
+            </div>
+
+                <div class="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 shadow-md hover:-translate-y-2 hover:shadow-xl duration-300">
+
+                <div class="flex gap-4">
+
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-pink-100 flex justify-center items-center flex-shrink-0">
+
+                            <i class="bi bi-vector-pen text-3xl text-pink-500"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3 class="text-lg sm:text-xl lg:text-2xl font-semibold">
+                                Graphic Designing
+                            </h3>
+
+                            <div class="w-20 h-1 bg-pink-200 mt-3 mb-5 rounded-full"></div>
+
+                            <p class="text-gray-600 leading-8">
+                                Visually stunning designs that communicate your
+                                brand story and make you stand out.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <button onclick="openModal('modal-graphic')" style="cursor:pointer !important;"
+                        class="flex items-center justify-between mt-8 text-pink-500 font-semibold w-full">
+
+                        Learn More
+
+                        <div class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center">
+
+                            <i data-lucide="arrow-right"></i>
+
+                        </div>
+
+                    </button>
+
+                </div>
+                <div class="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 shadow-md hover:-translate-y-2 hover:shadow-xl duration-300">
+
+                    <div class="flex gap-4">
+
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-pink-100 flex justify-center items-center flex-shrink-0">
+
+                            <i class="bi bi-camera-reels text-3xl text-pink-500"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3 class="text-lg sm:text-xl lg:text-2xl font-semibold">
+                                Reels & Video Editing
+                            </h3>
+
+                            <div class="w-20 h-1 bg-pink-200 mt-3 mb-5 rounded-full"></div>
+
+                            <p class="text-gray-600 leading-8">
+                                Scroll-stopping reels and short-form videos
+                                crafted to go viral and drive real results.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <button onclick="openModal('modal-reels')" style="cursor:pointer !important;"
+                        class="flex items-center justify-between mt-8 text-pink-500 font-semibold w-full">
+
+                        Learn More
+
+                        <div class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center">
+
+                            <i data-lucide="arrow-right"></i>
+
+                        </div>
+
+                    </button>
+
+                </div>
+                <div class="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 shadow-md hover:-translate-y-2 hover:shadow-xl duration-300">
+
+                    <div class="flex gap-4">
+
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-pink-100 flex justify-center items-center flex-shrink-0">
+
+                            <i class="bi bi-file-earmark-text text-3xl text-pink-500"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3 class="text-lg sm:text-xl lg:text-2xl font-semibold">
+                                Content Creation
+                            </h3>
+
+                            <div class="w-20 h-1 bg-pink-200 mt-3 mb-5 rounded-full"></div>
+
+                            <p class="text-gray-600 leading-8">
+                                Compelling copy and creative assets that tell
+                                your brand story and drive meaningful action.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <button onclick="openModal('modal-content')" style="cursor:pointer !important;"
+                        class="flex items-center justify-between mt-8 text-pink-500 font-semibold w-full">
+
+                        Learn More
+
+                        <div class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center">
+
+                            <i data-lucide="arrow-right"></i>
+
+                        </div>
+
+                    </button>
+
+                </div>
+                <div class="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 shadow-md hover:-translate-y-2 hover:shadow-xl duration-300">
+
+                    <div class="flex gap-4">
+
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-pink-100 flex justify-center items-center flex-shrink-0">
+
+                            <i class="bi bi-rocket-takeoff text-3xl text-pink-500"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3 class="text-lg sm:text-xl lg:text-2xl font-semibold">
+                                Brand Strategy
+                            </h3>
+
+                            <div class="w-20 h-1 bg-pink-200 mt-3 mb-5 rounded-full"></div>
+
+                            <p class="text-gray-600 leading-8">
+                                Strategic positioning and identity building
+                                that makes your brand truly unforgettable.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <button onclick="openModal('modal-brand')" style="cursor:pointer !important;"
+                        class="flex items-center justify-between mt-8 text-pink-500 font-semibold w-full">
+
+                        Learn More
+
+                        <div class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center">
+
+                            <i data-lucide="arrow-right"></i>
+
+                        </div>
+
+                    </button>
+
+                </div>
+                <div class="bg-white rounded-3xl p-5 sm:p-6 lg:p-8 shadow-md hover:-translate-y-2 hover:shadow-xl duration-300">
+
+                    <div class="flex gap-4">
+
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-pink-100 flex justify-center items-center flex-shrink-0">
+
+                            <i class="bi bi-megaphone text-3xl text-pink-500"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3 class="text-lg sm:text-xl lg:text-2xl font-semibold">
+                                Meta Ads & Google Ads
+                            </h3>
+
+                            <div class="w-20 h-1 bg-pink-200 mt-3 mb-5 rounded-full"></div>
+
+                            <p class="text-gray-600 leading-8">
+                                Data-driven paid ad campaigns that maximise
+                                your ROI and grow revenue predictably.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <button onclick="openModal('modal-ads')" style="cursor:pointer !important;"
+                        class="flex items-center justify-between mt-8 text-pink-500 font-semibold w-full">
+
+                        Learn More
+
+                        <div class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center">
+
+                            <i data-lucide="arrow-right"></i>
+
+                        </div>
+
+                    </button>
+
+                </div>
+            </div>
+
+            <div
+                class="mt-16 bg-white rounded-full shadow-lg px-8 py-6 flex flex-col md:flex-row justify-between items-center">
+
+                <div class="flex items-center gap-5">
+
+                    <div class="w-16 h-16 rounded-full bg-pink-100 flex items-center justify-center">
+
+                        <i data-lucide="bar-chart-3" class="text-pink-500"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h3 class="text-2xl font-semibold text-pink-500">
+                            Strategy. Creativity. Results.
+                        </h3>
+
+                        <p class="text-gray-600">
+                            Everything your brand needs to grow digitally.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <p class="heading text-4xl text-pink-500 mt-5 md:mt-0">
+
+                    Let's grow together!
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================== PORTFOLIO SECTION ===================== -->
+
+    <section id="portfolio" class="py-24 bg-[#FFF8F5] overflow-hidden relative">
+
+        <!-- Decorative Background -->
+
+        <div class="absolute -top-10 left-0 w-48 h-48 bg-pink-100 rounded-full blur-3xl opacity-40"></div>
+        <div class="absolute bottom-0 right-0 w-60 h-60 bg-pink-100 rounded-full blur-3xl opacity-40"></div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+            <!-- Heading -->
+
+            <div class="text-center">
+
+                <p class="uppercase tracking-[4px] text-pink-500 font-semibold flex items-center justify-center gap-2">
+
+                    Portfolio
+
+                    <i data-lucide="heart" class="w-5 h-5"></i>
+
+                </p>
+
+                <h2 class="heading text-5xl lg:text-7xl text-[#2D1B1B] mt-4 leading-tight">
+
+                    A Glimpse of My
+
+                    <span class="text-pink-400">
+
+                        Work
+
+                    </span>
+
+                </h2>
+
+                <div class="flex justify-center mt-4">
+
+                    <div class="w-28 h-1 rounded-full bg-pink-300"></div>
+
+                </div>
+
+                <p class="mt-6 text-lg text-gray-600 max-w-2xl mx-auto leading-8">
+
+                    Creative designs, impactful strategies and engaging
+                    digital experiences crafted to help brands grow online.
+
+                </p>
+
+            </div>
+            <!-- Portfolio Grid starts in Part 2 -->
+
+            <div class="mt-16">
+                <!-- ===================== PORTFOLIO GRID ===================== -->
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+                    <!-- Card 1 -->
+
+                    <article
+                        class="group bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition duration-500">
+
+                        <div class="relative overflow-hidden">
+
+                            <img src="assest/img/1.jpeg" alt="Social Media Creative"
+                                class="w-full object-cover group-hover:scale-110 transition duration-700">
+                        </div>
+
+                    </article>
+
+
+                    <!-- Card 2 -->
+
+                    <article
+                        class="group bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition duration-500">
+
+                        <div class="relative overflow-hidden">
+
+                            <img src="assest/img/6.jpeg" alt="Festival Creative"
+                                class="w-full h-96 object-cover group-hover:scale-110 transition duration-700">
+                        </div>
+
+                    </article>
+
+
+                    <!-- Card 3 -->
+
+                    <article
+                        class="group bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition duration-500">
+
+                        <div class="relative overflow-hidden">
+                            <video src="assest/videos/v1.mp4" controls loop class="w-full h-96 object-cover group-hover:scale-110 transition duration-700"></video>
+                        </div>
+
+                    </article>
+
+
+                    <!-- Card 4 -->
+
+                    <article
+                        class="group bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition duration-500">
+
+                        <div class="relative overflow-hidden">
+                            <video src="assest/videos/v2.mp4" controls loop class="w-full h-96 object-cover group-hover:scale-110 transition duration-700"></video>
+                        </div>
+
+                    </article>
+
+                </div>
+
+                <!-- SECOND ROW -->
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+
+                    <img src="assest/img/4.jpeg"
+                        class="rounded-3xl shadow-md hover:scale-105 transition duration-500">
+
+                    <img src="assest/img/5.jpeg"
+                        class="rounded-3xl shadow-md hover:scale-105 transition duration-500">
+
+                    <img src="assest/img/3.jpeg"
+                        class="rounded-3xl shadow-md hover:scale-105 transition duration-500">
+
+                    <img src="assest/img/2.jpeg"
+                        class="rounded-3xl shadow-md hover:scale-105 transition duration-500">
+
+                    <!-- ===================== VIEW MORE BUTTON ===================== -->
+
+                    <!-- <div class="flex justify-center mt-14">
+
+        <a href="#"
+            class="group inline-flex items-center gap-3 bg-gradient-to-r from-pink-500 to-pink-400 text-white px-10 py-4 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 duration-300">
+
+            <span class="font-medium text-lg">
+
+                View More Works
+
+            </span>
+
+            <i data-lucide="arrow-right"
+                class="w-5 h-5 group-hover:translate-x-1 duration-300"></i>
+
+        </a>
+
+    </div> -->
+
+                    <!-- Decorative Arrow -->
+
+                    <div class="hidden lg:flex justify-center mt-6">
+
+                        <svg width="140" height="60" viewBox="0 0 140 60" fill="none">
+
+                            <path d="M5 5C50 40 90 20 135 55" stroke="#F59CB7" stroke-width="2" stroke-linecap="round"
+                                stroke-dasharray="6 6" />
+
+                            <path d="M124 45L135 55L120 58" stroke="#F59CB7" stroke-width="2" fill="none" />
+
+                        </svg>
+
+                    </div>
+
+                </div>
+
+                <!-- Decorative Leaves -->
+
+                <div class="absolute top-40 left-0 hidden xl:block opacity-20">
+
+                    <i data-lucide="leaf" class="w-28 h-28 text-pink-300"></i>
+
+                </div>
+
+                <div class="absolute bottom-24 right-0 hidden xl:block opacity-20">
+
+                    <i data-lucide="sprout" class="w-28 h-28 text-pink-300"></i>
+
+                </div>
+
+                <!-- Floating Sparkles -->
+
+                <div class="absolute top-28 left-1/4 animate-pulse hidden lg:block">
+
+                    <i data-lucide="sparkles" class="w-8 h-8 text-pink-300"></i>
+
+                </div>
+
+                <div class="absolute top-24 right-1/4 animate-pulse hidden lg:block">
+
+                    <i data-lucide="sparkles" class="w-10 h-10 text-pink-200"></i>
+
+                </div>
+
+                <div class="absolute bottom-20 left-20 animate-pulse hidden lg:block">
+
+                    <i data-lucide="sparkles" class="w-7 h-7 text-pink-200"></i>
+
+                </div>
+
+    </section>
+
+    <!-- ===================== TESTIMONIALS SECTION ===================== -->
+
+    <section id="testi" class="relative py-24 bg-[#FFF8F5] overflow-hidden">
+
+        <!-- Background Decorations -->
+
+        <div class="absolute top-10 left-10 w-40 h-40 bg-pink-100 rounded-full blur-3xl opacity-30"></div>
+        <div class="absolute bottom-0 right-0 w-52 h-52 bg-pink-100 rounded-full blur-3xl opacity-30"></div>
+
+        <!-- Floating Sparkles -->
+
+        <div class="absolute top-20 left-1/4 hidden lg:block animate-pulse">
+            <i data-lucide="sparkles" class="w-8 h-8 text-pink-300"></i>
+        </div>
+
+        <div class="absolute top-16 right-32 hidden lg:block animate-pulse">
+            <i data-lucide="heart" class="w-7 h-7 text-pink-300"></i>
+        </div>
+
+        <div class="absolute bottom-24 left-20 hidden lg:block animate-pulse">
+            <i data-lucide="sparkles" class="w-6 h-6 text-pink-200"></i>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+            <!-- Section Heading -->
+
+            <div class="text-center">
+
+                <p class="uppercase tracking-[4px] text-pink-500 font-semibold flex items-center justify-center gap-2">
+
+                    Testimonials
+
+                    <i data-lucide="heart" class="w-5 h-5"></i>
+
+                </p>
+
+                <h2 class="heading text-5xl lg:text-7xl text-[#2D1B1B] mt-5 leading-tight">
+
+                    Kind Words From My
+
+                    <span class="text-pink-400">
+
+                        Clients
+
+                    </span>
+
+                </h2>
+
+                <div class="flex justify-center mt-5">
+
+                    <div class="w-28 h-1 rounded-full bg-pink-300"></div>
+
+                </div>
+
+                <p class="mt-7 max-w-3xl mx-auto text-lg leading-8 text-gray-600">
+
+                    Every successful project begins with trust, collaboration,
+                    and creativity. Here's what some of my amazing clients have
+                    to say about working together.
+
+                </p>
+
+            </div>
+
+            <!-- Decorative Quote Icon -->
+
+            <div class="hidden lg:flex justify-center mt-10">
+
+                <div
+                    class="w-20 h-20 rounded-3xl bg-gradient-to-br from-pink-400 to-pink-500 shadow-xl rotate-[-10deg] flex items-center justify-center">
+
+                    <i data-lucide="quote" class="w-10 h-10 text-white"></i>
+
+                </div>
+
+            </div>
+
+            <!-- Testimonial Cards Start -->
+
+            <div class="grid lg:grid-cols-3 gap-8 mt-16">
+                <!-- ===================== TESTIMONIAL CARD 1 ===================== -->
+
+                <article
+                    class="group relative bg-white rounded-[30px] border border-pink-100 p-8 shadow-lg hover:shadow-2xl hover:-translate-y-3 transition-all duration-500">
+
+                    <!-- Quote -->
+
+                    <div class="flex justify-between items-center">
+
+                        <i data-lucide="quote" class="w-12 h-12 text-pink-500"></i>
+
+                        <i data-lucide="heart" class="w-7 h-7 text-pink-300 group-hover:fill-pink-300 transition"></i>
+
+                    </div>
+
+                    <!-- Review -->
+
+                    <p class="mt-8 text-gray-700 leading-9 text-lg">
+
+                        "Working together was an absolute pleasure.
+                        Every design perfectly matched our brand identity
+                        and exceeded our expectations. Professional,
+                        creative and always delivered on time."
+
+                    </p>
+
+                    <hr class="my-8 border-pink-100">
+
+                    <!-- Client -->
+
+                    <div class="flex items-center gap-4">
+
+                        <img src="assest/img/client1.png"
+                            class="w-16 h-16 rounded-full border-2 border-pink-200 object-cover">
+
+                        <div>
+
+                            <h4 class="font-semibold text-xl text-[#2D1B1B]">
+
+                                Sudha Jain
+
+                            </h4>
+
+                            <p class="text-gray-500 text-sm">
+
+                                S2 Khana Khazana
+
+                            </p>
+
+                            <div class="flex gap-1 mt-2">
+
+                                <i data-lucide="star" class="w-4 h-4 fill-pink-500 text-pink-500"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-pink-500 text-pink-500"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-pink-500 text-pink-500"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-pink-500 text-pink-500"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-pink-500 text-pink-500"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+                <!-- ===================== TESTIMONIAL CARD 2 ===================== -->
+
+                <article
+                    class="group relative bg-white rounded-[30px] border border-purple-100 p-8 shadow-lg hover:shadow-2xl hover:-translate-y-3 transition-all duration-500">
+
+                    <div class="flex justify-between items-center">
+
+                        <i data-lucide="quote" class="w-12 h-12 text-purple-500"></i>
+
+                        <i data-lucide="sparkles" class="w-7 h-7 text-purple-300"></i>
+
+                    </div>
+
+                    <p class="mt-8 text-gray-700 leading-9 text-lg">
+
+                        "Highly creative, responsive and full of fresh
+                        ideas. The social media strategy helped us
+                        increase engagement and reach the right audience."
+
+                    </p>
+
+                    <hr class="my-8 border-purple-100">
+
+                    <div class="flex items-center gap-4">
+
+                        <img src="assest/img/client2.png"
+                            class="w-16 h-16 rounded-full border-2 border-purple-200 object-cover">
+
+                        <div>
+
+                            <h4 class="font-semibold text-xl text-[#2D1B1B]">
+
+                                Priya Sharma
+
+                            </h4>
+
+                            <p class="text-gray-500 text-sm">
+
+                                TMB Corporation
+
+                            </p>
+
+                            <div class="flex gap-1 mt-2">
+
+                                <i data-lucide="star" class="w-4 h-4 fill-purple-500 text-purple-500"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-purple-500 text-purple-500"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-purple-500 text-purple-500"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-purple-500 text-purple-500"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-purple-500 text-purple-500"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+                <!-- ===================== TESTIMONIAL CARD 3 ===================== -->
+
+                <article
+                    class="group relative bg-white rounded-[30px] border border-orange-100 p-8 shadow-lg hover:shadow-2xl hover:-translate-y-3 transition-all duration-500">
+
+                    <div class="flex justify-between items-center">
+
+                        <i data-lucide="quote" class="w-12 h-12 text-orange-400"></i>
+
+                        <i data-lucide="sparkle" class="w-7 h-7 text-orange-300"></i>
+
+                    </div>
+
+                    <p class="mt-8 text-gray-700 leading-9 text-lg">
+
+                        "Beautiful branding, premium creatives and
+                        excellent communication throughout the project.
+                        Highly recommended for digital marketing."
+
+                    </p>
+
+                    <hr class="my-8 border-orange-100">
+
+                    <div class="flex items-center gap-4">
+
+                        <img src="assest/img/client3.png"
+                            class="w-16 h-16 rounded-full border-2 border-orange-200 object-cover">
+
+                        <div>
+
+                            <h4 class="font-semibold text-xl text-[#2D1B1B]">
+
+                                Nishant Patni
+
+                            </h4>
+
+                            <p class="text-gray-500 text-sm">
+
+                                Happiness Event
+
+                            </p>
+
+                            <div class="flex gap-1 mt-2">
+
+                                <i data-lucide="star" class="w-4 h-4 fill-orange-400 text-orange-400"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-orange-400 text-orange-400"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-orange-400 text-orange-400"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-orange-400 text-orange-400"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-orange-400 text-orange-400"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+            <!-- ===================== TESTIMONIAL CTA ===================== -->
+
+            <div class="mt-16">
+
+                <div class="relative bg-white rounded-[35px] border border-pink-100 shadow-xl p-6 lg:p-8">
+
+                    <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+
+                        <!-- Left -->
+
+                        <div class="flex items-center gap-5">
+
+                            <div
+                                class="w-20 h-20 rounded-full bg-gradient-to-br from-pink-400 to-pink-500 flex items-center justify-center shadow-lg">
+
+                                <i data-lucide="heart-handshake" class="w-10 h-10 text-white"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h3 class="heading text-3xl text-[#2D1B1B]">
+
+                                    Happy Clients,
+                                    Successful Stories!
+
+                                </h3>
+
+                                <p class="mt-2 text-gray-600 text-lg">
+
+                                    Building brands with
+
+                                    <span class="text-pink-500 font-semibold">
+
+                                        creativity
+
+                                    </span>
+
+                                    and heart.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Right Button -->
+
+                        <a  onclick="openPopup()"
+                            class="group inline-flex items-center gap-3 bg-gradient-to-r from-pink-500 to-pink-400 text-white px-10 py-4 rounded-full shadow-lg hover:shadow-2xl hover:scale-105 duration-300">
+
+                            <span class="font-medium text-lg">
+
+                                Let's Work Together
+
+                            </span>
+
+                            <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 duration-300">
+
+                            </i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Decorative Leaves -->
+
+        <div class="absolute left-0 top-1/2 -translate-y-1/2 hidden xl:block opacity-20">
+
+            <i data-lucide="leaf" class="w-28 h-28 text-pink-300"></i>
+
+        </div>
+
+        <div class="absolute right-0 bottom-20 hidden xl:block opacity-20">
+
+            <i data-lucide="sprout" class="w-28 h-28 text-pink-300"></i>
+
+        </div>
+
+    </section>
+
+    <!-- ===================== CONTACT SECTION ===================== -->
+
+    <section id="contact" class="relative py-24 bg-[#FFF8F5] overflow-hidden">
+
+        <!-- Background Blur -->
+
+        <div class="absolute -top-20 left-0 w-72 h-72 bg-pink-100 rounded-full blur-3xl opacity-40"></div>
+        <div class="absolute bottom-0 right-0 w-80 h-80 bg-pink-100 rounded-full blur-3xl opacity-40"></div>
+
+        <!-- Floating Decorations -->
+
+        <div class="absolute top-20 left-16 hidden lg:block animate-pulse">
+            <i data-lucide="sparkles" class="w-8 h-8 text-pink-300"></i>
+        </div>
+
+        <div class="absolute top-24 right-20 hidden lg:block animate-pulse">
+            <i data-lucide="heart" class="w-8 h-8 text-pink-300"></i>
+        </div>
+
+        <div class="absolute bottom-24 left-10 hidden lg:block animate-pulse">
+            <i data-lucide="sparkles" class="w-7 h-7 text-pink-200"></i>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+            <!-- Heading -->
+
+            <div class="text-center">
+
+                <p class="uppercase tracking-[4px] text-pink-500 font-semibold flex items-center justify-center gap-2">
+
+                    Let's Connect
+
+                    <i data-lucide="heart" class="w-5 h-5"></i>
+
+                </p>
+
+                <h2 class="heading text-5xl lg:text-7xl leading-tight mt-5 text-[#2D1B1B]">
+
+                    Let's Create Something
+
+                    <span class="text-pink-400">
+
+                        Amazing
+
+                    </span>
+
+                    Together!
+
+                </h2>
+
+                <div class="flex justify-center mt-5">
+
+                    <div class="w-28 h-1 rounded-full bg-pink-300"></div>
+
+                </div>
+
+                <p class="mt-7 text-lg text-gray-600 max-w-3xl mx-auto leading-8">
+
+                    Have a project in mind? I'd love to hear about your ideas.
+                    Let's build something creative, memorable, and impactful together.
+
+                </p>
+
+            </div>
+
+            <!-- Main Grid -->
+
+            <div class="grid lg:grid-cols-2 gap-14 mt-20">
+
+                <!-- LEFT SIDE -->
+
+                <div>
+
+                    <h3 class="heading text-4xl text-[#2D1B1B]">
+
+                        Let's Talk 👋
+
+                    </h3>
+
+                    <p class="mt-6 text-gray-600 leading-8 text-lg">
+
+                        Whether you're launching a new brand, growing your
+                        business online, or looking for creative marketing
+                        solutions, I'm here to help bring your vision to life.
+
+                    </p>
+
+                    <p class="mt-4 text-pink-500 font-semibold text-xl">
+
+                        I'd love to hear from you!
+
+                    </p>
+
+                    <!-- Contact Cards Start Here -->
+
+                    <!-- Contact Card -->
+
+                    <div class="mt-10 space-y-6">
+
+                        <!-- Email -->
+
+                        <div
+                            class="group bg-white rounded-3xl border border-pink-100 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 p-6 flex items-center gap-5">
+
+                            <div
+                                class="w-16 h-16 rounded-2xl bg-gradient-to-br from-pink-500 to-pink-400 text-white flex items-center justify-center shadow-lg">
+
+                                <i data-lucide="mail" class="w-8 h-8"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h4 class="text-pink-500 font-semibold text-xl">
+
+                                    Email
+
+                                </h4>
+
+                                <a href="mailto:digielevate02@gmail.com"
+                                    class="text-gray-700 hover:text-pink-500 transition">
+
+                                    digielevate02@gmail.com
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Phone -->
+
+                        <div
+                            class="group bg-white rounded-3xl border border-pink-100 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 p-6 flex items-center gap-5">
+
+                            <div
+                                class="w-16 h-16 rounded-2xl bg-gradient-to-br from-pink-500 to-pink-400 text-white flex items-center justify-center shadow-lg">
+
+                                <i data-lucide="phone-call" class="w-8 h-8"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h4 class="text-pink-500 font-semibold text-xl">
+
+                                    Phone Number
+
+                                </h4>
+
+                                <a href="tel:+919954733307" class="text-gray-700 hover:text-pink-500 transition">
+
+                                    +91 99547 33307
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Instagram -->
+
+                        <div
+                            class="group bg-white rounded-3xl border border-pink-100 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 p-6 flex items-center gap-5">
+
+                            <div
+                                class="w-16 h-16 rounded-2xl bg-gradient-to-br from-pink-500 to-pink-400 text-white flex items-center justify-center shadow-lg">
+
+                                <i class="bi bi-instagram text-3xl"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h4 class="text-pink-500 font-semibold text-xl">
+
+                                    Instagram
+
+                                </h4>
+
+                                <a href="https://instagram.com/digie_levate" target="_blank"
+                                    class="text-gray-700 hover:text-pink-500 transition">
+
+                                    @digie_levate
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- CTA Button -->
+
+                    <div class="mt-10">
+
+                        <a
+                            class="group inline-flex items-center justify-center gap-4 px-12 py-5 rounded-full bg-gradient-to-r from-pink-500 to-pink-400 text-white text-2xl font-medium shadow-xl hover:scale-105 hover:shadow-pink-300/50 transition duration-500">
+
+                            <span class="heading text-4xl">
+
+                                Get In Touch
+
+                            </span>
+
+                            <i data-lucide="arrow-right"
+                                class="w-7 h-7 group-hover:translate-x-2 transition duration-300">
+
+                            </i>
+
+                        </a>
+
+                    </div>
+
+                    <!-- Bottom Text -->
+
+                    <div class="flex items-center gap-3 mt-8">
+
+                        <i data-lucide="heart" class="w-6 h-6 text-pink-500 fill-pink-500"></i>
+
+                        <p class="text-lg text-gray-700">
+
+                            I can't wait to work with you!
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- RIGHT SIDE STARTS -->
+                <div>
+
+                    <!-- ================= CONTACT FORM ================= -->
+
+                    <div class="bg-white rounded-[35px] border border-pink-100 shadow-xl p-8 lg:p-10">
+
+                        <form action="#" method="POST" class="space-y-7">
+
+                            <!-- Name -->
+
+                            <div>
+
+                                <label class="block text-lg font-semibold text-[#2D1B1B] mb-3">
+
+                                    Your Name
+
+                                </label>
+
+                                <input type="text" name="name" placeholder="Enter your name" required
+                                    class="w-full px-6 py-4 rounded-2xl border border-gray-200 focus:border-pink-400 focus:ring-4 focus:ring-pink-100 outline-none transition duration-300">
+
+                            </div>
+
+                            <!-- Email -->
+
+                            <div>
+
+                                <label class="block text-lg font-semibold text-[#2D1B1B] mb-3">
+
+                                    Email Address
+
+                                </label>
+
+                                <input type="email" name="email" placeholder="Enter your email" required
+                                    class="w-full px-6 py-4 rounded-2xl border border-gray-200 focus:border-pink-400 focus:ring-4 focus:ring-pink-100 outline-none transition duration-300">
+
+                            </div>
+
+                            <!-- Phone -->
+
+                            <div>
+
+                                <label class="block text-lg font-semibold text-[#2D1B1B] mb-3">
+
+                                    Phone Number
+
+                                </label>
+
+                                <input type="tel" name="phone" placeholder="Enter your phone number"
+                                    class="w-full px-6 py-4 rounded-2xl border border-gray-200 focus:border-pink-400 focus:ring-4 focus:ring-pink-100 outline-none transition duration-300">
+
+                            </div>
+
+                            <!-- Subject -->
+
+                            <div>
+
+                                <label class="block text-lg font-semibold text-[#2D1B1B] mb-3">
+
+                                    Subject
+
+                                </label>
+
+                                <input type="text" name="subject" placeholder="Project Discussion"
+                                    class="w-full px-6 py-4 rounded-2xl border border-gray-200 focus:border-pink-400 focus:ring-4 focus:ring-pink-100 outline-none transition duration-300">
+
+                            </div>
+
+                            <!-- Message -->
+
+                            <div>
+
+                                <label class="block text-lg font-semibold text-[#2D1B1B] mb-3">
+
+                                    Your Message
+
+                                </label>
+
+                                <textarea rows="6" name="message" placeholder="Tell me about your project..." required
+                                    class="w-full px-6 py-4 rounded-2xl border border-gray-200 resize-none focus:border-pink-400 focus:ring-4 focus:ring-pink-100 outline-none transition duration-300"></textarea>
+
+                            </div>
+
+                            <!-- Button -->
+
+                            <button type="submit"
+                                class="group w-full bg-gradient-to-r from-pink-500 to-pink-400 text-white py-5 rounded-full text-xl font-semibold shadow-xl hover:shadow-pink-300/60 hover:scale-[1.02] transition duration-300 flex items-center justify-center gap-3">
+
+                                <span>
+
+                                    Send Message
+
+                                </span>
+
+                                <i data-lucide="send"
+                                    class="w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300">
+                                </i>
+
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Decorative Leaves -->
+
+            <div class="absolute left-0 bottom-24 hidden xl:block opacity-20">
+                <i data-lucide="leaf" class="w-28 h-28 text-pink-300"></i>
+            </div>
+
+            <div class="absolute right-0 top-40 hidden xl:block opacity-20">
+                <i data-lucide="sprout" class="w-28 h-28 text-pink-300"></i>
+            </div>
+
+    </section>
+
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+
+        const dot = document.querySelector(".cursor-dot");
+        const outline = document.querySelector(".cursor-outline");
+
+        let mouseX = 0;
+        let mouseY = 0;
+
+        let outlineX = 0;
+        let outlineY = 0;
+
+        window.addEventListener("mousemove", (e) => {
+
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            dot.style.left = mouseX + "px";
+            dot.style.top = mouseY + "px";
+
+        });
+
+        function animate() {
+
+            outlineX += (mouseX - outlineX) * 0.12;
+            outlineY += (mouseY - outlineY) * 0.12;
+
+            outline.style.left = outlineX + "px";
+            outline.style.top = outlineY + "px";
+
+            requestAnimationFrame(animate);
+
+        }
+
+        animate();
+
+        document.querySelectorAll("a,button").forEach(el => {
+
+            el.addEventListener("mouseenter", () => {
+
+                outline.style.width = "70px";
+                outline.style.height = "70px";
+                outline.style.background = "rgba(236,127,158,.20)";
+                outline.style.borderColor = "#EC7F9E";
+
+                dot.style.transform = "translate(-50%,-50%) scale(1.8)";
+
+            });
+
+            el.addEventListener("mouseleave", () => {
+
+                outline.style.width = "42px";
+                outline.style.height = "42px";
+                outline.style.background = "rgba(236,127,158,.12)";
+                outline.style.borderColor = "#EC7F9E";
+
+                dot.style.transform = "translate(-50%,-50%) scale(1)";
+
+            });
+
+        });
+
+        document.querySelectorAll("button").forEach(button => {
+
+            button.addEventListener("mousemove", (e) => {
+
+                const rect = button.getBoundingClientRect();
+
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                button.style.transform = `translate(${x * 0.15}px,${y * 0.15}px)`;
+
+            });
+
+            button.addEventListener("mouseleave", () => {
+
+                button.style.transform = "translate(0,0)";
+
+            });
+
+        });
+
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const cards = document.querySelectorAll(".portfolio-card");
+
+        filterButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const category = button.dataset.filter;
+
+                filterButtons.forEach(btn => {
+                    btn.classList.remove("bg-pink-500", "text-white");
+                    btn.classList.add("bg-white");
+                });
+
+                button.classList.add("bg-pink-500", "text-white");
+
+                cards.forEach(card => {
+                    if (category === "all" || card.dataset.category === category) {
+                        card.style.display = "block";
+                    } else {
+                        card.style.display = "none";
+                    }
+                });
+            });
+        });
+
+        lucide.createIcons();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+
+        new Swiper(".testimonialSwiper", {
+
+            loop: true,
+
+            spaceBetween: 30,
+
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false
+            },
+
+            breakpoints: {
+
+                320: {
+                    slidesPerView: 1
+                },
+
+                768: {
+                    slidesPerView: 2
+                },
+
+                1024: {
+                    slidesPerView: 3
+                }
+
+            }
+
+        });
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+
+    <script>
+        const lenis = new Lenis({
+            duration: 1.4,
+            smoothWheel: true,
+            easing: (t) => 1 - Math.pow(1 - t, 4)
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+    </script>
+    <script>
+
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll("nav a");
+
+        window.addEventListener("scroll", () => {
+
+            let current = "";
+
+            sections.forEach(section => {
+
+                const top = section.offsetTop - 150;
+                const height = section.clientHeight;
+
+                if (scrollY >= top) {
+
+                    current = section.getAttribute("id");
+
+                }
+
+            });
+
+            navLinks.forEach(link => {
+
+                link.classList.remove("text-pink-500", "border-b-2", "border-pink-400");
+
+                if (link.getAttribute("href") === "#" + current) {
+
+                    link.classList.add("text-pink-500", "border-b-2", "border-pink-400");
+
+                }
+
+            });
+
+        });
+
+    </script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 120,
+            easing: "ease-out-cubic"
+        });
+    </script>
+    <!-- ===================== SERVICE MODALS ===================== -->
+
+    <!-- MODAL: Social Media Management -->
+    <div class="svc-modal-overlay" id="modal-smm" onclick="closeModalOnOverlay(event, 'modal-smm')">
+        <div class="svc-modal">
+            <button class="svc-modal-close" onclick="closeModal('modal-smm')">&#10005;</button>
+            <!-- Header -->
+            <p class="uppercase tracking-[4px] text-pink-500 font-semibold flex items-center gap-2">SERVICE <i
+                    data-lucide="heart" class="w-5 h-5"></i></p>
+            <h2 class="heading text-5xl font-bold text-[#2D1B1B] leading-tight mt-3">Social Media <span
+                    class="text-pink-400">Management</span></h2>
+            <div class="w-28 h-1 bg-pink-300 rounded-full mt-4 mb-5"></div>
+            <p class="text-lg text-gray-600 leading-8">From content planning to community engagement, I manage your
+                social presence end-to-end so your brand <span class="text-pink-500 font-semibold">connects, converts,
+                    and grows</span> consistently across every platform.</p>
+            <!-- Stats -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+                <div class="svc-stat-card bg-white rounded-2xl p-5 text-center shadow-sm">
+                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3"><i
+                            data-lucide="users" class="w-5 h-5 text-pink-500"></i></div>
+                    <p class="text-2xl font-bold text-[#2D1B1B]">50+</p>
+                    <p class="text-gray-500 text-sm mt-1">Brands Handled</p>
+                </div>
+                <div class="svc-stat-card bg-white rounded-2xl p-5 text-center shadow-sm">
+                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3"><i
+                            data-lucide="trending-up" class="w-5 h-5 text-pink-500"></i></div>
+                    <p class="text-2xl font-bold text-[#2D1B1B]">3x</p>
+                    <p class="text-gray-500 text-sm mt-1">Avg. Engagement Growth</p>
+                </div>
+                <div class="svc-stat-card bg-white rounded-2xl p-5 text-center shadow-sm">
+                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3"><i
+                            data-lucide="calendar" class="w-5 h-5 text-pink-500"></i></div>
+                    <p class="text-2xl font-bold text-[#2D1B1B]">30+</p>
+                    <p class="text-gray-500 text-sm mt-1">Posts / Month</p>
+                </div>
+                <div class="svc-stat-card bg-white rounded-2xl p-5 text-center shadow-sm">
+                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3"><i
+                            data-lucide="star" class="w-5 h-5 text-pink-500"></i></div>
+                    <p class="text-2xl font-bold text-[#2D1B1B]">100%</p>
+                    <p class="text-gray-500 text-sm mt-1">Client Satisfaction</p>
+                </div>
+            </div>
+            <!-- What's Included -->
+            <p class="uppercase tracking-[4px] text-pink-500 font-semibold mt-10 mb-2">What's Included</p>
+            <h3 class="heading text-3xl text-[#2D1B1B] mb-6">Everything You <span class="text-pink-400">Need</span></h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="layout" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Content Strategy & Planning</h4>
+                    <p class="text-gray-600 text-sm leading-6">Monthly content calendars tailored to your brand voice,
+                        audience, and business goals.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="image" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Creative Content Creation</h4>
+                    <p class="text-gray-600 text-sm leading-6">Eye-catching visuals, captions, stories and reels crafted
+                        to stop the scroll.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="message-circle" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Community Engagement</h4>
+                    <p class="text-gray-600 text-sm leading-6">Timely replies, comment management and community building
+                        to grow loyal followers.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="bar-chart-2" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Analytics & Reporting</h4>
+                    <p class="text-gray-600 text-sm leading-6">Detailed monthly reports with insights on reach,
+                        engagement and follower growth.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="hash" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Hashtag & SEO Research</h4>
+                    <p class="text-gray-600 text-sm leading-6">Strategic hashtag sets and keyword-rich captions to
+                        maximise organic discoverability.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="zap" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Profile Optimisation</h4>
+                    <p class="text-gray-600 text-sm leading-6">Bio, highlights, link-in-bio and profile aesthetics
+                        optimised for conversions.</p>
+                </div>
+            </div>
+            <!-- Process -->
+            <p class="uppercase tracking-[4px] text-pink-500 font-semibold mt-10 mb-2">How It Works</p>
+            <h3 class="heading text-3xl text-[#2D1B1B] mb-6">My <span class="text-pink-400">Process</span></h3>
+            <div class="space-y-4">
+                <div class="svc-process-step bg-white rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 rounded-full bg-pink-500 text-white flex items-center justify-center font-bold flex-shrink-0">
+                        1</div>
+                    <div>
+                        <h4 class="font-semibold text-[#2D1B1B]">Discovery Call</h4>
+                        <p class="text-gray-600 text-sm mt-1 leading-6">Understanding your brand, goals, target audience
+                            and current social presence.</p>
+                    </div>
+                </div>
+                <div class="svc-process-step bg-white rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 rounded-full bg-pink-400 text-white flex items-center justify-center font-bold flex-shrink-0">
+                        2</div>
+                    <div>
+                        <h4 class="font-semibold text-[#2D1B1B]">Strategy Building</h4>
+                        <p class="text-gray-600 text-sm mt-1 leading-6">Creating a customised content strategy and
+                            monthly calendar aligned to your goals.</p>
+                    </div>
+                </div>
+                <div class="svc-process-step bg-white rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 rounded-full bg-pink-300 text-white flex items-center justify-center font-bold flex-shrink-0">
+                        3</div>
+                    <div>
+                        <h4 class="font-semibold text-[#2D1B1B]">Content Creation & Scheduling</h4>
+                        <p class="text-gray-600 text-sm mt-1 leading-6">Designing, writing and scheduling content for
+                            optimal reach at the right times.</p>
+                    </div>
+                </div>
+                <div class="svc-process-step bg-white rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 rounded-full bg-pink-200 text-pink-600 flex items-center justify-center font-bold flex-shrink-0">
+                        4</div>
+                    <div>
+                        <h4 class="font-semibold text-[#2D1B1B]">Monitor, Engage & Report</h4>
+                        <p class="text-gray-600 text-sm mt-1 leading-6">Active community management and monthly
+                            performance reports with growth insights.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Platforms -->
+            <p class="uppercase tracking-[4px] text-pink-500 font-semibold mt-10 mb-6">Platforms I Manage</p>
+            <div class="flex flex-wrap gap-3">
+                <div
+                    class="svc-tool-badge bg-white border border-pink-100 rounded-xl px-4 py-3 flex items-center gap-2 shadow-sm">
+                    <i class="bi bi-instagram text-xl text-pink-500"></i><span
+                        class="font-medium text-sm">Instagram</span>
+                </div>
+                <div
+                    class="svc-tool-badge bg-white border border-pink-100 rounded-xl px-4 py-3 flex items-center gap-2 shadow-sm">
+                    <i class="bi bi-facebook text-xl text-pink-500"></i><span
+                        class="font-medium text-sm">Facebook</span>
+                </div>
+                <div
+                    class="svc-tool-badge bg-white border border-pink-100 rounded-xl px-4 py-3 flex items-center gap-2 shadow-sm">
+                    <i class="bi bi-linkedin text-xl text-pink-500"></i><span
+                        class="font-medium text-sm">LinkedIn</span>
+                </div>
+                <div
+                    class="svc-tool-badge bg-white border border-pink-100 rounded-xl px-4 py-3 flex items-center gap-2 shadow-sm">
+                    <i class="bi bi-twitter-x text-xl text-pink-500"></i><span class="font-medium text-sm">X /
+                        Twitter</span>
+                </div>
+                <div
+                    class="svc-tool-badge bg-white border border-pink-100 rounded-xl px-4 py-3 flex items-center gap-2 shadow-sm">
+                    <i class="bi bi-youtube text-xl text-pink-500"></i><span class="font-medium text-sm">YouTube</span>
+                </div>
+            </div>
+            <!-- CTA -->
+            <div class="mt-10 bg-gradient-to-r from-pink-400 to-pink-500 rounded-2xl p-8 text-center">
+                <h3 class="heading text-3xl text-white font-bold">Let's Grow Together! <span class="opacity-70">♡</span>
+                </h3>
+                <p class="text-pink-100 mt-2">Ready to transform your social media presence? Let's talk.</p>
+                <a href="#contact" onclick="closeModal('modal-smm')"
+                    class="mt-6 inline-flex items-center gap-3 bg-white text-pink-500 px-8 py-3 rounded-xl shadow-xl hover:scale-105 duration-300 font-bold">Book
+                    a Free Call <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Graphic Designing -->
+    <div class="svc-modal-overlay" id="modal-graphic" onclick="closeModalOnOverlay(event, 'modal-graphic')">
+        <div class="svc-modal">
+            <button class="svc-modal-close" onclick="closeModal('modal-graphic')">&#10005;</button>
+            <p class="uppercase tracking-[4px] text-pink-500 font-semibold flex items-center gap-2">SERVICE <i
+                    data-lucide="heart" class="w-5 h-5"></i></p>
+            <h2 class="heading text-5xl font-bold text-[#2D1B1B] leading-tight mt-3">Graphic <span
+                    class="text-pink-400">Designing</span></h2>
+            <div class="w-28 h-1 bg-pink-300 rounded-full mt-4 mb-5"></div>
+            <p class="text-lg text-gray-600 leading-8">Visually stunning designs that <span
+                    class="text-pink-500 font-semibold">communicate your brand story</span>, captivate your audience and
+                make you stand out in a crowded digital world.</p>
+            <!-- Stats -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+                <div class="svc-stat-card bg-white rounded-2xl p-5 text-center shadow-sm">
+                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3"><i
+                            data-lucide="image" class="w-5 h-5 text-pink-500"></i></div>
+                    <p class="text-2xl font-bold text-[#2D1B1B]">200+</p>
+                    <p class="text-gray-500 text-sm mt-1">Designs Delivered</p>
+                </div>
+                <div class="svc-stat-card bg-white rounded-2xl p-5 text-center shadow-sm">
+                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3"><i
+                            data-lucide="palette" class="w-5 h-5 text-pink-500"></i></div>
+                    <p class="text-2xl font-bold text-[#2D1B1B]">30+</p>
+                    <p class="text-gray-500 text-sm mt-1">Brand Identities</p>
+                </div>
+                <div class="svc-stat-card bg-white rounded-2xl p-5 text-center shadow-sm">
+                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3"><i
+                            data-lucide="clock" class="w-5 h-5 text-pink-500"></i></div>
+                    <p class="text-2xl font-bold text-[#2D1B1B]">48h</p>
+                    <p class="text-gray-500 text-sm mt-1">Avg. Delivery</p>
+                </div>
+                <div class="svc-stat-card bg-white rounded-2xl p-5 text-center shadow-sm">
+                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3"><i
+                            data-lucide="star" class="w-5 h-5 text-pink-500"></i></div>
+                    <p class="text-2xl font-bold text-[#2D1B1B]">5.0</p>
+                    <p class="text-gray-500 text-sm mt-1">Average Rating</p>
+                </div>
+            </div>
+            <!-- Design Specialities -->
+            <p class="uppercase tracking-[4px] text-pink-500 font-semibold mt-10 mb-2">What I Design</p>
+            <h3 class="heading text-3xl text-[#2D1B1B] mb-6">Design <span class="text-pink-400">Specialities</span></h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="layers" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Brand Identity & Logo</h4>
+                    <p class="text-gray-600 text-sm leading-6">Complete brand identity packages — logo, colour palette,
+                        typography and brand guidelines.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="smartphone" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Social Media Graphics</h4>
+                    <p class="text-gray-600 text-sm leading-6">Posts, stories, highlight covers, carousels and banners
+                        designed for maximum impact.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="file-text" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Marketing Materials</h4>
+                    <p class="text-gray-600 text-sm leading-6">Flyers, brochures, posters, presentations and digital ads
+                        that convert.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="package" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Packaging Design</h4>
+                    <p class="text-gray-600 text-sm leading-6">Product packaging that looks amazing on shelf and in
+                        unboxing videos alike.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="monitor" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Web & UI Graphics</h4>
+                    <p class="text-gray-600 text-sm leading-6">Landing page visuals, banners and UI elements crafted to
+                        boost conversions.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="type" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Typography & Layout</h4>
+                    <p class="text-gray-600 text-sm leading-6">Beautiful typographic compositions and editorial layouts
+                        for print and digital.</p>
+                </div>
+            </div>
+            <!-- Process -->
+            <p class="uppercase tracking-[4px] text-pink-500 font-semibold mt-10 mb-2">How It Works</p>
+            <h3 class="heading text-3xl text-[#2D1B1B] mb-6">My Design <span class="text-pink-400">Process</span></h3>
+            <div class="space-y-4">
+                <div class="svc-process-step bg-white rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 rounded-full bg-pink-500 text-white flex items-center justify-center font-bold flex-shrink-0">
+                        1</div>
+                    <div>
+                        <h4 class="font-semibold text-[#2D1B1B]">Brief & Discovery</h4>
+                        <p class="text-gray-600 text-sm mt-1 leading-6">Deep dive into your brand, vision, target
+                            audience and design preferences.</p>
+                    </div>
+                </div>
+                <div class="svc-process-step bg-white rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 rounded-full bg-pink-400 text-white flex items-center justify-center font-bold flex-shrink-0">
+                        2</div>
+                    <div>
+                        <h4 class="font-semibold text-[#2D1B1B]">Concept & Moodboard</h4>
+                        <p class="text-gray-600 text-sm mt-1 leading-6">Creating initial concepts, colour palettes and
+                            visual direction for your approval.</p>
+                    </div>
+                </div>
+                <div class="svc-process-step bg-white rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 rounded-full bg-pink-300 text-white flex items-center justify-center font-bold flex-shrink-0">
+                        3</div>
+                    <div>
+                        <h4 class="font-semibold text-[#2D1B1B]">Design & Refinement</h4>
+                        <p class="text-gray-600 text-sm mt-1 leading-6">Crafting the final designs with your feedback
+                            until they're pixel-perfect.</p>
+                    </div>
+                </div>
+                <div class="svc-process-step bg-white rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 rounded-full bg-pink-200 text-pink-600 flex items-center justify-center font-bold flex-shrink-0">
+                        4</div>
+                    <div>
+                        <h4 class="font-semibold text-[#2D1B1B]">Final Delivery</h4>
+                        <p class="text-gray-600 text-sm mt-1 leading-6">Handing over all files in required formats (PNG,
+                            SVG, PDF, AI) ready to use.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Tools -->
+            <p class="uppercase tracking-[4px] text-pink-500 font-semibold mt-10 mb-6">Tools & Software</p>
+            <div class="flex flex-wrap gap-3">
+                <div
+                    class="svc-tool-badge bg-white border border-pink-100 rounded-xl px-4 py-3 flex items-center gap-2 shadow-sm">
+                    <i class="bi bi-brush text-xl text-pink-500"></i><span class="font-medium text-sm">Adobe
+                        Illustrator</span>
+                </div>
+                <div
+                    class="svc-tool-badge bg-white border border-pink-100 rounded-xl px-4 py-3 flex items-center gap-2 shadow-sm">
+                    <i class="bi bi-image text-xl text-pink-500"></i><span class="font-medium text-sm">Adobe
+                        Photoshop</span>
+                </div>
+                <div
+                    class="svc-tool-badge bg-white border border-pink-100 rounded-xl px-4 py-3 flex items-center gap-2 shadow-sm">
+                    <i class="bi bi-grid-1x2 text-xl text-pink-500"></i><span class="font-medium text-sm">Figma</span>
+                </div>
+                <div
+                    class="svc-tool-badge bg-white border border-pink-100 rounded-xl px-4 py-3 flex items-center gap-2 shadow-sm">
+                    <i class="bi bi-stars text-xl text-pink-500"></i><span class="font-medium text-sm">Canva Pro</span>
+                </div>
+                <div
+                    class="svc-tool-badge bg-white border border-pink-100 rounded-xl px-4 py-3 flex items-center gap-2 shadow-sm">
+                    <i class="bi bi-file-earmark-richtext text-xl text-pink-500"></i><span
+                        class="font-medium text-sm">Adobe InDesign</span>
+                </div>
+            </div>
+            <!-- CTA -->
+            <div class="mt-10 bg-gradient-to-r from-pink-400 to-pink-500 rounded-2xl p-8 text-center">
+                <h3 class="heading text-3xl text-white font-bold">Let's Create Something <span
+                        class="opacity-80">Beautiful</span></h3>
+                <p class="text-pink-100 mt-2">Ready to transform your brand's visual identity? Let's talk design.</p>
+                <a href="#contact" onclick="closeModal('modal-graphic')"
+                    class="mt-6 inline-flex items-center gap-3 bg-white text-pink-500 px-8 py-3 rounded-xl shadow-xl hover:scale-105 duration-300 font-bold">Book
+                    a Free Call <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Reels & Video Editing -->
+    <div class="svc-modal-overlay" id="modal-reels" onclick="closeModalOnOverlay(event, 'modal-reels')">
+        <div class="svc-modal">
+            <button class="svc-modal-close" onclick="closeModal('modal-reels')">&#10005;</button>
+            <p class="uppercase tracking-[4px] text-pink-500 font-semibold flex items-center gap-2">SERVICE <i
+                    data-lucide="heart" class="w-5 h-5"></i></p>
+            <h2 class="heading text-5xl font-bold text-[#2D1B1B] leading-tight mt-3">Reels & Video <span
+                    class="text-pink-400">Editing</span></h2>
+            <div class="w-28 h-1 bg-pink-300 rounded-full mt-4 mb-5"></div>
+            <p class="text-lg text-gray-600 leading-8">Engaging, scroll-stopping short-form video content crafted with
+                <span class="text-pink-500 font-semibold">cinematic flair and strategic storytelling</span> to captivate
+                your audience and drive real results.
+            </p>
+            <!-- Stats -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+                <div class="svc-stat-card bg-white rounded-2xl p-5 text-center shadow-sm">
+                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3"><i
+                            data-lucide="film" class="w-5 h-5 text-pink-500"></i></div>
+                    <p class="text-2xl font-bold text-[#2D1B1B]">100+</p>
+                    <p class="text-gray-500 text-sm mt-1">Reels Edited</p>
+                </div>
+                <div class="svc-stat-card bg-white rounded-2xl p-5 text-center shadow-sm">
+                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3"><i
+                            data-lucide="eye" class="w-5 h-5 text-pink-500"></i></div>
+                    <p class="text-2xl font-bold text-[#2D1B1B]">5M+</p>
+                    <p class="text-gray-500 text-sm mt-1">Total Views</p>
+                </div>
+                <div class="svc-stat-card bg-white rounded-2xl p-5 text-center shadow-sm">
+                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3"><i
+                            data-lucide="clock" class="w-5 h-5 text-pink-500"></i></div>
+                    <p class="text-2xl font-bold text-[#2D1B1B]">24h</p>
+                    <p class="text-gray-500 text-sm mt-1">Turnaround Time</p>
+                </div>
+                <div class="svc-stat-card bg-white rounded-2xl p-5 text-center shadow-sm">
+                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3"><i
+                            data-lucide="trending-up" class="w-5 h-5 text-pink-500"></i></div>
+                    <p class="text-2xl font-bold text-[#2D1B1B]">4x</p>
+                    <p class="text-gray-500 text-sm mt-1">Avg. Reach Boost</p>
+                </div>
+            </div>
+            <!-- Video Services -->
+            <p class="uppercase tracking-[4px] text-pink-500 font-semibold mt-10 mb-2">What's Included</p>
+            <h3 class="heading text-3xl text-[#2D1B1B] mb-6">Video <span class="text-pink-400">Services</span></h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="play-circle" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Instagram & YouTube Reels</h4>
+                    <p class="text-gray-600 text-sm leading-6">Vertical short-form videos with trendy transitions,
+                        effects and music sync.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="scissors" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Talking Head Edits</h4>
+                    <p class="text-gray-600 text-sm leading-6">Podcast clips, interviews and talking head videos edited
+                        for social media.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="sparkles" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Motion Graphics & Captions</h4>
+                    <p class="text-gray-600 text-sm leading-6">Animated text, subtitles and motion elements that make
+                        videos pop.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="shopping-bag" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Product Showcase Videos</h4>
+                    <p class="text-gray-600 text-sm leading-6">Visually compelling product reels designed to drive
+                        clicks and sales.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="music" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Audio & Music Sync</h4>
+                    <p class="text-gray-600 text-sm leading-6">Perfectly timed cuts and transitions synced to trending
+                        music and beats.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="palette" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Colour Grading</h4>
+                    <p class="text-gray-600 text-sm leading-6">Professional colour grading to match your brand aesthetic
+                        and mood.</p>
+                </div>
+            </div>
+            <!-- Process -->
+            <p class="uppercase tracking-[4px] text-pink-500 font-semibold mt-10 mb-2">How It Works</p>
+            <h3 class="heading text-3xl text-[#2D1B1B] mb-6">My Video <span class="text-pink-400">Process</span></h3>
+            <div class="space-y-4">
+                <div class="svc-process-step bg-white rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 rounded-full bg-pink-500 text-white flex items-center justify-center font-bold flex-shrink-0">
+                        1</div>
+                    <div>
+                        <h4 class="font-semibold text-[#2D1B1B]">Brief & Raw Footage</h4>
+                        <p class="text-gray-600 text-sm mt-1 leading-6">You share raw footage, references and a brief
+                            about the desired style and vibe.</p>
+                    </div>
+                </div>
+                <div class="svc-process-step bg-white rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 rounded-full bg-pink-400 text-white flex items-center justify-center font-bold flex-shrink-0">
+                        2</div>
+                    <div>
+                        <h4 class="font-semibold text-[#2D1B1B]">Editing & Effects</h4>
+                        <p class="text-gray-600 text-sm mt-1 leading-6">Cutting, transitions, motion graphics, music
+                            sync and colour grading applied.</p>
+                    </div>
+                </div>
+                <div class="svc-process-step bg-white rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 rounded-full bg-pink-300 text-white flex items-center justify-center font-bold flex-shrink-0">
+                        3</div>
+                    <div>
+                        <h4 class="font-semibold text-[#2D1B1B]">Review & Revisions</h4>
+                        <p class="text-gray-600 text-sm mt-1 leading-6">You review the draft and request revisions until
+                            you're 100% happy.</p>
+                    </div>
+                </div>
+                <div class="svc-process-step bg-white rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 rounded-full bg-pink-200 text-pink-600 flex items-center justify-center font-bold flex-shrink-0">
+                        4</div>
+                    <div>
+                        <h4 class="font-semibold text-[#2D1B1B]">Final Export & Delivery</h4>
+                        <p class="text-gray-600 text-sm mt-1 leading-6">Final video delivered in HD/4K ready for upload
+                            on any platform.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Tools -->
+            <p class="uppercase tracking-[4px] text-pink-500 font-semibold mt-10 mb-6">Tools & Software</p>
+            <div class="flex flex-wrap gap-3">
+                <div
+                    class="svc-tool-badge bg-white border border-pink-100 rounded-xl px-4 py-3 flex items-center gap-2 shadow-sm">
+                    <i class="bi bi-film text-xl text-pink-500"></i><span class="font-medium text-sm">Adobe Premiere
+                        Pro</span>
+                </div>
+                <div
+                    class="svc-tool-badge bg-white border border-pink-100 rounded-xl px-4 py-3 flex items-center gap-2 shadow-sm">
+                    <i class="bi bi-stars text-xl text-pink-500"></i><span class="font-medium text-sm">Adobe After
+                        Effects</span>
+                </div>
+                <div
+                    class="svc-tool-badge bg-white border border-pink-100 rounded-xl px-4 py-3 flex items-center gap-2 shadow-sm">
+                    <i class="bi bi-camera-video text-xl text-pink-500"></i><span class="font-medium text-sm">CapCut
+                        Pro</span>
+                </div>
+                <div
+                    class="svc-tool-badge bg-white border border-pink-100 rounded-xl px-4 py-3 flex items-center gap-2 shadow-sm">
+                    <i class="bi bi-play-btn text-xl text-pink-500"></i><span class="font-medium text-sm">DaVinci
+                        Resolve</span>
+                </div>
+                <div
+                    class="svc-tool-badge bg-white border border-pink-100 rounded-xl px-4 py-3 flex items-center gap-2 shadow-sm">
+                    <i class="bi bi-music-note-beamed text-xl text-pink-500"></i><span
+                        class="font-medium text-sm">Epidemic Sound</span>
+                </div>
+            </div>
+            <!-- CTA -->
+            <div class="mt-10 bg-gradient-to-r from-pink-400 to-pink-500 rounded-2xl p-8 text-center">
+                <h3 class="heading text-3xl text-white font-bold">Let's Make Your Brand Go <span
+                        class="opacity-80">Viral!</span></h3>
+                <p class="text-pink-100 mt-2">Ready to create scroll-stopping video content? Let's talk.</p>
+                <a href="#contact" onclick="closeModal('modal-reels')"
+                    class="mt-6 inline-flex items-center gap-3 bg-white text-pink-500 px-8 py-3 rounded-xl shadow-xl hover:scale-105 duration-300 font-bold">Book
+                    a Free Call <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Content Creation -->
+    <div class="svc-modal-overlay" id="modal-content" onclick="closeModalOnOverlay(event, 'modal-content')">
+        <div class="svc-modal">
+            <button class="svc-modal-close" onclick="closeModal('modal-content')">&#10005;</button>
+            <p class="uppercase tracking-[4px] text-pink-500 font-semibold flex items-center gap-2">SERVICE <i
+                    data-lucide="heart" class="w-5 h-5"></i></p>
+            <h2 class="heading text-5xl font-bold text-[#2D1B1B] leading-tight mt-3">Content <span
+                    class="text-pink-400">Creation</span></h2>
+            <div class="w-28 h-1 bg-pink-300 rounded-full mt-4 mb-5"></div>
+            <p class="text-lg text-gray-600 leading-8">Compelling copy, creative assets and engaging content that <span
+                    class="text-pink-500 font-semibold">tells your brand story</span>, resonates with your audience and
+                drives meaningful action.</p>
+            <!-- Stats -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+                <div class="svc-stat-card bg-white rounded-2xl p-5 text-center shadow-sm">
+                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3"><i
+                            data-lucide="file-text" class="w-5 h-5 text-pink-500"></i></div>
+                    <p class="text-2xl font-bold text-[#2D1B1B]">500+</p>
+                    <p class="text-gray-500 text-sm mt-1">Content Pieces</p>
+                </div>
+                <div class="svc-stat-card bg-white rounded-2xl p-5 text-center shadow-sm">
+                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3"><i
+                            data-lucide="trending-up" class="w-5 h-5 text-pink-500"></i></div>
+                    <p class="text-2xl font-bold text-[#2D1B1B]">10x</p>
+                    <p class="text-gray-500 text-sm mt-1">Engagement Lift</p>
+                </div>
+                <div class="svc-stat-card bg-white rounded-2xl p-5 text-center shadow-sm">
+                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3"><i
+                            data-lucide="users" class="w-5 h-5 text-pink-500"></i></div>
+                    <p class="text-2xl font-bold text-[#2D1B1B]">40+</p>
+                    <p class="text-gray-500 text-sm mt-1">Clients Served</p>
+                </div>
+                <div class="svc-stat-card bg-white rounded-2xl p-5 text-center shadow-sm">
+                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3"><i
+                            data-lucide="star" class="w-5 h-5 text-pink-500"></i></div>
+                    <p class="text-2xl font-bold text-[#2D1B1B]">100%</p>
+                    <p class="text-gray-500 text-sm mt-1">On-Time Delivery</p>
+                </div>
+            </div>
+            <!-- Content Types -->
+            <p class="uppercase tracking-[4px] text-pink-500 font-semibold mt-10 mb-2">What I Create</p>
+            <h3 class="heading text-3xl text-[#2D1B1B] mb-6">Content <span class="text-pink-400">Types</span></h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="instagram" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Social Media Captions</h4>
+                    <p class="text-gray-600 text-sm leading-6">Engaging, on-brand captions with hooks, storytelling and
+                        strong CTAs for every platform.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="edit" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Blog & Article Writing</h4>
+                    <p class="text-gray-600 text-sm leading-6">SEO-optimised long-form blog posts and articles that
+                        establish authority and drive traffic.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="mail" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Email Copywriting</h4>
+                    <p class="text-gray-600 text-sm leading-6">Compelling email sequences and newsletters that nurture
+                        leads and drive conversions.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="layout-template" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Website Copy</h4>
+                    <p class="text-gray-600 text-sm leading-6">Persuasive homepage, about, and service page copy that
+                        converts visitors into clients.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="mic" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Ad Copywriting</h4>
+                    <p class="text-gray-600 text-sm leading-6">High-converting ad copy for Meta, Google and LinkedIn
+                        campaigns that drive results.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="book-open" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Brand Storytelling</h4>
+                    <p class="text-gray-600 text-sm leading-6">Authentic brand narratives that connect emotionally with
+                        your target audience.</p>
+                </div>
+            </div>
+            <!-- Process -->
+            <p class="uppercase tracking-[4px] text-pink-500 font-semibold mt-10 mb-2">How It Works</p>
+            <h3 class="heading text-3xl text-[#2D1B1B] mb-6">My Content <span class="text-pink-400">Process</span></h3>
+            <div class="space-y-4">
+                <div class="svc-process-step bg-white rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 rounded-full bg-pink-500 text-white flex items-center justify-center font-bold flex-shrink-0">
+                        1</div>
+                    <div>
+                        <h4 class="font-semibold text-[#2D1B1B]">Brand Voice Discovery</h4>
+                        <p class="text-gray-600 text-sm mt-1 leading-6">Understanding your brand personality, tone and
+                            the message you want to communicate.</p>
+                    </div>
+                </div>
+                <div class="svc-process-step bg-white rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 rounded-full bg-pink-400 text-white flex items-center justify-center font-bold flex-shrink-0">
+                        2</div>
+                    <div>
+                        <h4 class="font-semibold text-[#2D1B1B]">Research & Strategy</h4>
+                        <p class="text-gray-600 text-sm mt-1 leading-6">Audience research, competitor analysis and
+                            content angle mapping for maximum impact.</p>
+                    </div>
+                </div>
+                <div class="svc-process-step bg-white rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 rounded-full bg-pink-300 text-white flex items-center justify-center font-bold flex-shrink-0">
+                        3</div>
+                    <div>
+                        <h4 class="font-semibold text-[#2D1B1B]">Writing & Creation</h4>
+                        <p class="text-gray-600 text-sm mt-1 leading-6">Crafting high-quality content that perfectly
+                            captures your brand voice and goals.</p>
+                    </div>
+                </div>
+                <div class="svc-process-step bg-white rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 rounded-full bg-pink-200 text-pink-600 flex items-center justify-center font-bold flex-shrink-0">
+                        4</div>
+                    <div>
+                        <h4 class="font-semibold text-[#2D1B1B]">Review & Delivery</h4>
+                        <p class="text-gray-600 text-sm mt-1 leading-6">Revisions based on your feedback until the
+                            content is exactly right, then final delivery.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- CTA -->
+            <div class="mt-10 bg-gradient-to-r from-pink-400 to-pink-500 rounded-2xl p-8 text-center">
+                <h3 class="heading text-3xl text-white font-bold">Words That <span class="opacity-80">Work For
+                        You</span></h3>
+                <p class="text-pink-100 mt-2">Ready to create content that converts? Let's talk.</p>
+                <a href="#contact" onclick="closeModal('modal-content')"
+                    class="mt-6 inline-flex items-center gap-3 bg-white text-pink-500 px-8 py-3 rounded-xl shadow-xl hover:scale-105 duration-300 font-bold">Book
+                    a Free Call <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Brand Strategy -->
+    <div class="svc-modal-overlay" id="modal-brand" onclick="closeModalOnOverlay(event, 'modal-brand')">
+        <div class="svc-modal">
+            <button class="svc-modal-close" onclick="closeModal('modal-brand')">&#10005;</button>
+            <p class="uppercase tracking-[4px] text-pink-500 font-semibold flex items-center gap-2">SERVICE <i
+                    data-lucide="heart" class="w-5 h-5"></i></p>
+            <h2 class="heading text-5xl font-bold text-[#2D1B1B] leading-tight mt-3">Brand <span
+                    class="text-pink-400">Strategy</span></h2>
+            <div class="w-28 h-1 bg-pink-300 rounded-full mt-4 mb-5"></div>
+            <p class="text-lg text-gray-600 leading-8">Strategic brand positioning, identity building and market
+                differentiation that <span class="text-pink-500 font-semibold">makes your brand unforgettable</span> and
+                drives sustainable business growth.</p>
+            <!-- Stats -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+                <div class="svc-stat-card bg-white rounded-2xl p-5 text-center shadow-sm">
+                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3"><i
+                            data-lucide="target" class="w-5 h-5 text-pink-500"></i></div>
+                    <p class="text-2xl font-bold text-[#2D1B1B]">25+</p>
+                    <p class="text-gray-500 text-sm mt-1">Brands Transformed</p>
+                </div>
+                <div class="svc-stat-card bg-white rounded-2xl p-5 text-center shadow-sm">
+                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3"><i
+                            data-lucide="trending-up" class="w-5 h-5 text-pink-500"></i></div>
+                    <p class="text-2xl font-bold text-[#2D1B1B]">2x</p>
+                    <p class="text-gray-500 text-sm mt-1">Avg. Revenue Growth</p>
+                </div>
+                <div class="svc-stat-card bg-white rounded-2xl p-5 text-center shadow-sm">
+                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3"><i
+                            data-lucide="layers" class="w-5 h-5 text-pink-500"></i></div>
+                    <p class="text-2xl font-bold text-[#2D1B1B]">30+</p>
+                    <p class="text-gray-500 text-sm mt-1">Brand Identities Built</p>
+                </div>
+                <div class="svc-stat-card bg-white rounded-2xl p-5 text-center shadow-sm">
+                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3"><i
+                            data-lucide="star" class="w-5 h-5 text-pink-500"></i></div>
+                    <p class="text-2xl font-bold text-[#2D1B1B]">5.0</p>
+                    <p class="text-gray-500 text-sm mt-1">Average Rating</p>
+                </div>
+            </div>
+            <!-- Strategy Deliverables -->
+            <p class="uppercase tracking-[4px] text-pink-500 font-semibold mt-10 mb-2">What's Included</p>
+            <h3 class="heading text-3xl text-[#2D1B1B] mb-6">Strategy <span class="text-pink-400">Deliverables</span>
+            </h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="compass" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Brand Positioning</h4>
+                    <p class="text-gray-600 text-sm leading-6">Defining your unique market position, value proposition
+                        and competitive advantage.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="users" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Audience Persona Building</h4>
+                    <p class="text-gray-600 text-sm leading-6">Deep research into your ideal customers' behaviours, pain
+                        points and motivations.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="message-square" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Brand Voice & Messaging</h4>
+                    <p class="text-gray-600 text-sm leading-6">Crafting a consistent brand voice, tone and messaging
+                        framework across all channels.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="search" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Competitor Analysis</h4>
+                    <p class="text-gray-600 text-sm leading-6">In-depth analysis of competitors to identify gaps and
+                        opportunities in your market.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="map" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Go-to-Market Strategy</h4>
+                    <p class="text-gray-600 text-sm leading-6">A comprehensive launch or growth plan with clear
+                        milestones and action steps.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="book" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Brand Guidelines</h4>
+                    <p class="text-gray-600 text-sm leading-6">A complete brand book to ensure visual and verbal
+                        consistency across all touchpoints.</p>
+                </div>
+            </div>
+            <!-- Process -->
+            <p class="uppercase tracking-[4px] text-pink-500 font-semibold mt-10 mb-2">How It Works</p>
+            <h3 class="heading text-3xl text-[#2D1B1B] mb-6">My Strategy <span class="text-pink-400">Framework</span>
+            </h3>
+            <div class="space-y-4">
+                <div class="svc-process-step bg-white rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 rounded-full bg-pink-500 text-white flex items-center justify-center font-bold flex-shrink-0">
+                        1</div>
+                    <div>
+                        <h4 class="font-semibold text-[#2D1B1B]">Discovery & Audit</h4>
+                        <p class="text-gray-600 text-sm mt-1 leading-6">A thorough audit of your current brand, market
+                            position and competitive landscape.</p>
+                    </div>
+                </div>
+                <div class="svc-process-step bg-white rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 rounded-full bg-pink-400 text-white flex items-center justify-center font-bold flex-shrink-0">
+                        2</div>
+                    <div>
+                        <h4 class="font-semibold text-[#2D1B1B]">Research & Insights</h4>
+                        <p class="text-gray-600 text-sm mt-1 leading-6">Deep market research to uncover audience
+                            insights and brand opportunities.</p>
+                    </div>
+                </div>
+                <div class="svc-process-step bg-white rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 rounded-full bg-pink-300 text-white flex items-center justify-center font-bold flex-shrink-0">
+                        3</div>
+                    <div>
+                        <h4 class="font-semibold text-[#2D1B1B]">Strategy Development</h4>
+                        <p class="text-gray-600 text-sm mt-1 leading-6">Building a tailored brand strategy roadmap
+                            aligned to your vision and business goals.</p>
+                    </div>
+                </div>
+                <div class="svc-process-step bg-white rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 rounded-full bg-pink-200 text-pink-600 flex items-center justify-center font-bold flex-shrink-0">
+                        4</div>
+                    <div>
+                        <h4 class="font-semibold text-[#2D1B1B]">Presentation & Implementation</h4>
+                        <p class="text-gray-600 text-sm mt-1 leading-6">Presenting the strategy and supporting you in
+                            executing it across all channels.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- CTA -->
+            <div class="mt-10 bg-gradient-to-r from-pink-400 to-pink-500 rounded-2xl p-8 text-center">
+                <h3 class="heading text-3xl text-white font-bold">Strategy That <span class="opacity-80">Scales</span>
+                </h3>
+                <p class="text-pink-100 mt-2">Ready to build a brand that stands out? Let's create your strategy.</p>
+                <a href="#contact" onclick="closeModal('modal-brand')"
+                    class="mt-6 inline-flex items-center gap-3 bg-white text-pink-500 px-8 py-3 rounded-xl shadow-xl hover:scale-105 duration-300 font-bold">Book
+                    a Free Call <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Meta & Google Ads -->
+    <div class="svc-modal-overlay" id="modal-ads" onclick="closeModalOnOverlay(event, 'modal-ads')">
+        <div class="svc-modal">
+            <button class="svc-modal-close" onclick="closeModal('modal-ads')">&#10005;</button>
+            <p class="uppercase tracking-[4px] text-pink-500 font-semibold flex items-center gap-2">SERVICE <i
+                    data-lucide="heart" class="w-5 h-5"></i></p>
+            <h2 class="heading text-5xl font-bold text-[#2D1B1B] leading-tight mt-3">Meta & Google <span
+                    class="text-pink-400">Ads</span></h2>
+            <div class="w-28 h-1 bg-pink-300 rounded-full mt-4 mb-5"></div>
+            <p class="text-lg text-gray-600 leading-8">Data-driven paid advertising campaigns across Meta and Google
+                that <span class="text-pink-500 font-semibold">maximise your ROI</span>, drive qualified leads and grow
+                your revenue predictably.</p>
+            <!-- Stats -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+                <div class="svc-stat-card bg-white rounded-2xl p-5 text-center shadow-sm">
+                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3"><i
+                            data-lucide="zap" class="w-5 h-5 text-pink-500"></i></div>
+                    <p class="text-2xl font-bold text-[#2D1B1B]">5x</p>
+                    <p class="text-gray-500 text-sm mt-1">Avg. ROAS</p>
+                </div>
+                <div class="svc-stat-card bg-white rounded-2xl p-5 text-center shadow-sm">
+                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3"><i
+                            data-lucide="trending-up" class="w-5 h-5 text-pink-500"></i></div>
+                    <p class="text-2xl font-bold text-[#2D1B1B]">40%</p>
+                    <p class="text-gray-500 text-sm mt-1">Lower CPL</p>
+                </div>
+                <div class="svc-stat-card bg-white rounded-2xl p-5 text-center shadow-sm">
+                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3"><i
+                            data-lucide="dollar-sign" class="w-5 h-5 text-pink-500"></i></div>
+                    <p class="text-2xl font-bold text-[#2D1B1B]">&#8377;50L+</p>
+                    <p class="text-gray-500 text-sm mt-1">Ad Spend Managed</p>
+                </div>
+                <div class="svc-stat-card bg-white rounded-2xl p-5 text-center shadow-sm">
+                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3"><i
+                            data-lucide="users" class="w-5 h-5 text-pink-500"></i></div>
+                    <p class="text-2xl font-bold text-[#2D1B1B]">20+</p>
+                    <p class="text-gray-500 text-sm mt-1">Clients Scaled</p>
+                </div>
+            </div>
+            <!-- Ad Services -->
+            <p class="uppercase tracking-[4px] text-pink-500 font-semibold mt-10 mb-2">What's Included</p>
+            <h3 class="heading text-3xl text-[#2D1B1B] mb-6">Ad <span class="text-pink-400">Services</span></h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            class="bi bi-facebook text-xl text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Meta (Facebook & Instagram) Ads</h4>
+                    <p class="text-gray-600 text-sm leading-6">Highly targeted campaigns across Meta platforms to reach
+                        and convert your ideal audience.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="search" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Google Search Ads</h4>
+                    <p class="text-gray-600 text-sm leading-6">Intent-based search campaigns that capture high-intent
+                        buyers actively searching for you.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="monitor" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Google Display & YouTube Ads</h4>
+                    <p class="text-gray-600 text-sm leading-6">Visual display and video ads for brand awareness and
+                        retargeting across the Google network.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="refresh-cw" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Retargeting Campaigns</h4>
+                    <p class="text-gray-600 text-sm leading-6">Re-engaging warm audiences who have already shown
+                        interest in your brand or products.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="bar-chart-3" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Conversion Optimisation</h4>
+                    <p class="text-gray-600 text-sm leading-6">Ongoing A/B testing and optimisation to continuously
+                        improve ROAS and lower CPA.</p>
+                </div>
+                <div class="svc-item-card bg-[#FFF8F5] rounded-2xl p-5">
+                    <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mb-3"><i
+                            data-lucide="file-bar-chart" class="w-5 h-5 text-pink-500"></i></div>
+                    <h4 class="font-semibold text-[#2D1B1B] mb-2">Detailed Reporting</h4>
+                    <p class="text-gray-600 text-sm leading-6">Weekly and monthly reports with clear metrics, insights
+                        and actionable recommendations.</p>
+                </div>
+            </div>
+            <!-- Process -->
+            <p class="uppercase tracking-[4px] text-pink-500 font-semibold mt-10 mb-2">How It Works</p>
+            <h3 class="heading text-3xl text-[#2D1B1B] mb-6">My Ads <span class="text-pink-400">Process</span></h3>
+            <div class="space-y-4">
+                <div class="svc-process-step bg-white rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 rounded-full bg-pink-500 text-white flex items-center justify-center font-bold flex-shrink-0">
+                        1</div>
+                    <div>
+                        <h4 class="font-semibold text-[#2D1B1B]">Audit & Goal Setting</h4>
+                        <p class="text-gray-600 text-sm mt-1 leading-6">Auditing existing campaigns and setting clear
+                            KPIs aligned to your business goals.</p>
+                    </div>
+                </div>
+                <div class="svc-process-step bg-white rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 rounded-full bg-pink-400 text-white flex items-center justify-center font-bold flex-shrink-0">
+                        2</div>
+                    <div>
+                        <h4 class="font-semibold text-[#2D1B1B]">Audience & Keyword Research</h4>
+                        <p class="text-gray-600 text-sm mt-1 leading-6">Building detailed audience segments and keyword
+                            lists to reach the right people.</p>
+                    </div>
+                </div>
+                <div class="svc-process-step bg-white rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 rounded-full bg-pink-300 text-white flex items-center justify-center font-bold flex-shrink-0">
+                        3</div>
+                    <div>
+                        <h4 class="font-semibold text-[#2D1B1B]">Creative & Campaign Launch</h4>
+                        <p class="text-gray-600 text-sm mt-1 leading-6">Creating compelling ad creatives and launching
+                            optimised campaigns across platforms.</p>
+                    </div>
+                </div>
+                <div class="svc-process-step bg-white rounded-2xl p-5 shadow-sm flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 rounded-full bg-pink-200 text-pink-600 flex items-center justify-center font-bold flex-shrink-0">
+                        4</div>
+                    <div>
+                        <h4 class="font-semibold text-[#2D1B1B]">Optimise & Scale</h4>
+                        <p class="text-gray-600 text-sm mt-1 leading-6">Continuous monitoring, A/B testing and scaling
+                            of winning campaigns for maximum ROI.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Platforms -->
+            <p class="uppercase tracking-[4px] text-pink-500 font-semibold mt-10 mb-6">Where I Advertise</p>
+            <div class="flex flex-wrap gap-3">
+                <div
+                    class="svc-tool-badge bg-white border border-pink-100 rounded-xl px-4 py-3 flex items-center gap-2 shadow-sm">
+                    <i class="bi bi-facebook text-xl text-pink-500"></i><span class="font-medium text-sm">Facebook
+                        Ads</span>
+                </div>
+                <div
+                    class="svc-tool-badge bg-white border border-pink-100 rounded-xl px-4 py-3 flex items-center gap-2 shadow-sm">
+                    <i class="bi bi-instagram text-xl text-pink-500"></i><span class="font-medium text-sm">Instagram
+                        Ads</span>
+                </div>
+                <div
+                    class="svc-tool-badge bg-white border border-pink-100 rounded-xl px-4 py-3 flex items-center gap-2 shadow-sm">
+                    <i data-lucide="search" class="w-5 h-5 text-pink-500"></i><span class="font-medium text-sm">Google
+                        Search</span>
+                </div>
+                <div
+                    class="svc-tool-badge bg-white border border-pink-100 rounded-xl px-4 py-3 flex items-center gap-2 shadow-sm">
+                    <i class="bi bi-youtube text-xl text-pink-500"></i><span class="font-medium text-sm">YouTube
+                        Ads</span>
+                </div>
+                <div
+                    class="svc-tool-badge bg-white border border-pink-100 rounded-xl px-4 py-3 flex items-center gap-2 shadow-sm">
+                    <i data-lucide="monitor" class="w-5 h-5 text-pink-500"></i><span class="font-medium text-sm">Google
+                        Display</span>
+                </div>
+            </div>
+            <!-- CTA -->
+            <div class="mt-10 bg-gradient-to-r from-pink-400 to-pink-500 rounded-2xl p-8 text-center">
+                <h3 class="heading text-3xl text-white font-bold">Ads That Actually <span
+                        class="opacity-80">Convert</span></h3>
+                <p class="text-pink-100 mt-2">Ready to make every rupee of ad spend count? Let's talk.</p>
+                <a href="#contact" onclick="closeModal('modal-ads')"
+                    class="mt-6 inline-flex items-center gap-3 bg-white text-pink-500 px-8 py-3 rounded-xl shadow-xl hover:scale-105 duration-300 font-bold">Book
+                    a Free Call <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+            </div>
+        </div>
+    </div>
+<!-- POPUP FORM -->
+<div id="contactPopup" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+
+    <div class="bg-white w-[95%] sm:w-[500px] rounded-3xl p-5 sm:p-8 relative">
+
+        <!-- Close Button -->
+        <button onclick="closePopup()" class="absolute top-4 right-4 text-xl">
+            ✖
+        </button>
+
+        <h2 class="text-2xl font-bold mb-5 text-center text-pink-500">
+            Let's Connect
+        </h2>
+
+        <form class="space-y-4">
+
+            <input type="text" placeholder="Your Name"
+                class="w-full border rounded-xl px-4 py-3 text-sm focus:outline-pink-400">
+
+            <input type="email" placeholder="Email Address"
+                class="w-full border rounded-xl px-4 py-3 text-sm focus:outline-pink-400">
+
+            <input type="tel" placeholder="Phone Number"
+                class="w-full border rounded-xl px-4 py-3 text-sm focus:outline-pink-400">
+
+            <input type="text" placeholder="Subject"
+                class="w-full border rounded-xl px-4 py-3 text-sm focus:outline-pink-400">
+
+            <textarea rows="4" placeholder="Your Message"
+                class="w-full border rounded-xl px-4 py-3 text-sm focus:outline-pink-400"></textarea>
+
+            <button type="submit"
+                class="w-full bg-gradient-to-r from-pink-500 to-pink-400 text-white py-3 rounded-full font-semibold">
+                Send Message ✈
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+<script>
+function openPopup() {
+    document.getElementById("contactPopup").classList.remove("hidden");
+}
+
+function closePopup() {
+    document.getElementById("contactPopup").classList.add("hidden");
+}
+</script>
+<script>
+document.getElementById("contactPopup").addEventListener("click", function(e){
+    if(e.target === this){
+        closePopup();
+    }
+});
+</script>
+    <!-- Modal JS -->
+    <script>
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+            document.body.style.overflow = 'hidden';
+            // Re-initialise lucide icons inside modals
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        function closeModalOnOverlay(event, id) {
+            if (event.target === document.getElementById(id)) closeModal(id);
+        }
+        // Close on Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.svc-modal-overlay.active').forEach(function (m) {
+                    m.classList.remove('active');
+                });
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+
+</body>
+
+</html>

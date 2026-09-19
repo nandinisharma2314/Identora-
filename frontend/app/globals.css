@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #FFF8F5;
+}
+
+.heading {
+    font-family: var(--font-playfair), serif;
+}
+
+/* CONTACT SECTION */
+#contact {
+    background: linear-gradient(180deg, #FFF8F5 0%, #FFFDFC 100%);
+}
+#contact input, #contact textarea {
+    transition: .35s;
+}
+#contact input:hover, #contact textarea:hover {
+    border-color: #f472b6;
+}
+#contact input:focus, #contact textarea:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(244, 114, 182, .15);
+}
+#contact .group:hover {
+    transform: translateY(-5px);
+}
+#contact button {
+    transition: .35s;
+}
+#contact button:hover {
+    box-shadow: 0 18px 40px rgba(244, 114, 182, .35);
+}
+
+/* Cursor styles removed so the default cursor is visible */
+
+/* ================= SERVICE MODALS ================= */
+.svc-modal-overlay {
+    position: fixed; inset: 0; background: rgba(45, 27, 27, 0.55); backdrop-filter: blur(6px); z-index: 9000; display: flex; align-items: flex-end; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .35s;
+}
+.svc-modal-overlay.active {
+    opacity: 1; pointer-events: all;
+}
+.svc-modal {
+    background: #FFF8F5; width: 100%; max-width: 900px; max-height: 90vh; overflow-y: auto; border-radius: 32px 32px 0 0; padding: 48px 48px 56px; transform: translateY(60px); transition: transform .45s cubic-bezier(.22, .68, 0, 1.2); position: relative; scrollbar-width: thin; scrollbar-color: #EC7F9E #FFF0F5;
+}
+.svc-modal-overlay.active .svc-modal {
+    transform: translateY(0);
+}
+.svc-modal-close {
+    position: absolute; top: 20px; right: 24px; width: 44px; height: 44px; border-radius: 50%; background: #FFE8F0; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer !important; transition: .3s; font-size: 20px; color: #EC7F9E;
+}
+.svc-modal-close:hover {
+    background: #EC7F9E; color: #fff; transform: rotate(90deg) scale(1.1);
+}
+.svc-stat-card { transition: .35s; }
+.svc-stat-card:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(236, 127, 158, .2); }
+.svc-item-card { transition: .35s; }
+.svc-item-card:hover { transform: translateY(-6px); box-shadow: 0 16px 35px rgba(236, 127, 158, .2); }
+.svc-process-step { transition: .3s; }
+.svc-process-step:hover { transform: translateX(6px); }
+.svc-tool-badge { transition: .3s; }
+.svc-tool-badge:hover { transform: translateY(-4px) scale(1.05); box-shadow: 0 12px 25px rgba(236, 127, 158, .2); }
+@media(max-width:640px) { .svc-modal { padding: 32px 20px 40px; border-radius: 24px 24px 0 0; } }
+
+/* Portfolio Cards */
+.portfolio-card { overflow: hidden; border-radius: 24px; transition: .5s; }
+.portfolio-card img { transition: 1s; }
+.portfolio-card:hover img { transform: scale(1.08); }
+.portfolio-card:hover { transform: translateY(-10px); box-shadow: 0 20px 45px rgba(0, 0, 0, .12); }
+
+/* Filter Buttons */
+.filter-btn { transition: .3s; }
+.filter-btn.active, .filter-btn:hover { background: #EC7F9E; color: #fff; transform: translateY(-3px); }
+
+/* View More */
+.view-btn { transition: .35s; }
+.view-btn:hover { box-shadow: 0 18px 35px rgba(236, 127, 158, .35); }
+
+/* ================= TESTIMONIALS ================= */
+.testimonial-card { transition: .45s ease; }
+.testimonial-card:hover { transform: translateY(-12px); box-shadow: 0 25px 45px rgba(236, 127, 158, .18); }
+.testimonial-card img { transition: .5s; }
+.testimonial-card:hover img { transform: scale(1.08); }
+.testimonial-btn { transition: .35s; }
+.testimonial-btn:hover { box-shadow: 0 15px 35px rgba(236, 127, 158, .35); }
+#testimonials { background: radial-gradient(circle at top left, #fff7f5 0%, #fff8f5 35%, #fffdfc 100%); }
+
+/* ================= SWIPER PAGINATION DOTS ================= */
+.swiper-pagination-bullet {
+    background-color: #fbcfe8 !important; /* Tailwind pink-200 */
+    width: 10px !important;
+    height: 10px !important;
+    opacity: 1 !important;
+    border-radius: 50% !important;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    margin: 0 6px !important;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #ec4899 !important; /* Tailwind pink-500 */
+    width: 32px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 10px rgba(236, 72, 153, 0.4) !important;
+}
