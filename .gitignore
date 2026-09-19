@@ -8,3 +8,4 @@ npm-debug.log*
 *.pem
 .env
 .env.*
+contacts.csv

@@ -16,6 +16,8 @@
     "bootstrap-icons": "^1.13.1",
     "deep-email-validator": "^0.1.27",
     "framer-motion": "^13.1.1",
+    "google-auth-library": "^11.1.0",
+    "google-spreadsheet": "^5.3.0",
     "lucide-react": "^1.39.0",
     "next": "14.2.35",
     "nodemailer": "^10.0.10",

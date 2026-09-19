@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import validate from "deep-email-validator";
+import fs from "fs/promises";
+import path from "path";
+import { GoogleSpreadsheet } from "google-spreadsheet";
+import { JWT } from "google-auth-library";
 
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
@@ -49,7 +53,51 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    // 2. Send a confirmation email to the USER using Nodemailer
+    // 2. Save to CSV Locally
+    const csvLine = `"${name.replace(/"/g, '""')}","${email}","${phone}","${message.replace(/"/g, '""').replace(/\n/g, " ")}","${new Date().toISOString()}"\n`;
+    const csvPath = path.join(process.cwd(), "contacts.csv");
+    
+    // Check if file exists, if not write headers
+    try {
+      await fs.access(csvPath);
+    } catch {
+      await fs.writeFile(csvPath, "Name,Email,Phone,Message,Date\n");
+    }
+    await fs.appendFile(csvPath, csvLine);
+
+    // 3. Sync to Google Sheets
+    if (process.env.GOOGLE_CLIENT_EMAIL && process.env.GOOGLE_PRIVATE_KEY && process.env.GOOGLE_SHEET_ID) {
+      try {
+        const serviceAccountAuth = new JWT({
+          email: process.env.GOOGLE_CLIENT_EMAIL,
+          key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+          scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+        });
+
+        const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID, serviceAccountAuth);
+        await doc.loadInfo(); 
+        const sheet = doc.sheetsByIndex[0];
+        
+        // ensure headers exist on the sheet before adding rows if it's empty
+        try {
+          await sheet.setHeaderRow(["Name", "Email", "Phone", "Message", "Date"]);
+        } catch (e) {
+          // ignore if headers already set or can't be set
+        }
+
+        await sheet.addRow({
+          Name: name,
+          Email: email,
+          Phone: phone,
+          Message: message,
+          Date: new Date().toISOString()
+        });
+      } catch (sheetError) {
+        console.error("Google Sheets Sync failed:", sheetError);
+      }
+    }
+
+    // 4. Send a confirmation email to the USER using Nodemailer
     // This requires EMAIL_USER and EMAIL_PASS to be set in .env.local
     if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
       const transporter = nodemailer.createTransport({
