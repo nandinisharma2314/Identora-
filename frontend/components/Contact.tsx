@@ -55,32 +55,20 @@ export default function Contact() {
     }
 
     try {
-      // STEP 1: Validate email & send Auto-Reply via our internal Next.js API
-      const res = await fetch("/api/contact", {
+      const res = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          service_id: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+          template_id: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+          user_id: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+          template_params: data,
+        }),
       });
 
-      const result = await res.json();
       if (!res.ok) {
-        throw new Error(result.error || "Failed to validate email");
-      }
-
-      // STEP 2: Forward to Web3Forms from the CLIENT (bypasses Cloudflare bot block entirely!)
-      formData.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "");
-      formData.append("subject", `New Contact from ${data.name}`);
-      formData.append("from_name", data.name as string);
-      formData.append("replyto", data.email as string);
-
-      const web3Res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData,
-      });
-
-      const web3Result = await web3Res.json();
-      if (!web3Res.ok || !web3Result.success) {
-        throw new Error(web3Result.message || "Failed to forward to Web3Forms");
+        const text = await res.text();
+        throw new Error(text || "Failed to send message via EmailJS");
       }
 
       setStatus("success");
