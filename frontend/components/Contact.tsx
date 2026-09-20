@@ -55,20 +55,42 @@ export default function Contact() {
     }
 
     try {
-      const res = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+      // 1. Call internal API to sync with Google Sheets & backend handlers
+      const apiRes = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          service_id: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-          template_id: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-          user_id: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
-          template_params: data,
-        }),
+        body: JSON.stringify(data),
       });
 
-      if (!res.ok) {
-        const text = await res.text();
-        throw new Error(text || "Failed to send message via EmailJS");
+      const apiResult = await apiRes.json().catch(() => ({}));
+      if (!apiRes.ok) {
+        throw new Error(apiResult.error || "Failed to submit message to server.");
+      }
+
+      // 2. Also send notification to owner via EmailJS (if configured)
+      if (
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID &&
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID &&
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+      ) {
+        try {
+          const emailRes = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              service_id: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+              template_id: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+              user_id: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+              template_params: data,
+            }),
+          });
+
+          if (!emailRes.ok) {
+            console.warn("EmailJS notification failed:", await emailRes.text());
+          }
+        } catch (emailErr) {
+          console.warn("EmailJS notification error:", emailErr);
+        }
       }
 
       setStatus("success");
