@@ -8,7 +8,7 @@ const nextConfig = {
       },
     ],
   },
-  output: "standalone",
+  // output: "standalone", // Removed for Vercel compatibility
 };
 
 module.exports = nextConfig;
