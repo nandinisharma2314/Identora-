@@ -19,7 +19,7 @@ export default function StartupHero() {
   };
 
   return (
-    <section className="relative w-full h-[90vh] flex items-center justify-center overflow-hidden">
+    <section className="relative w-full min-h-[90svh] md:h-[90vh] flex items-center justify-center overflow-hidden py-20 md:py-0">
       {/* Background Video */}
       <video
         autoPlay
@@ -49,25 +49,25 @@ export default function StartupHero() {
 
         <motion.h1
           variants={itemVariants}
-          className="heading text-6xl md:text-8xl font-bold text-white leading-tight mb-6"
+          className="heading text-5xl sm:text-6xl md:text-8xl font-bold text-white leading-tight mb-4 md:mb-6"
         >
           Elevate Your <span className="text-pink-400 font-serif italic">Brand</span>
         </motion.h1>
 
         <motion.p
           variants={itemVariants}
-          className="text-xl md:text-2xl text-gray-200 max-w-2xl mx-auto mb-10 leading-relaxed font-light"
+          className="text-lg sm:text-xl md:text-2xl text-gray-200 max-w-2xl mx-auto mb-8 md:mb-10 leading-relaxed font-light px-2 md:px-0"
         >
           We blend data-driven strategies with stunning creative design to build unforgettable digital experiences that scale.
         </motion.p>
 
         <motion.div
           variants={itemVariants}
-          className="flex flex-col sm:flex-row items-center justify-center gap-6"
+          className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 sm:gap-6 w-full max-w-sm sm:max-w-none mx-auto"
         >
           <Link
             href="/#service"
-            className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-pink-500 to-pink-400 text-white font-medium text-lg rounded-full overflow-hidden shadow-[0_0_40px_rgba(244,114,182,0.4)] hover:shadow-[0_0_60px_rgba(244,114,182,0.6)] transition-all duration-300"
+            className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-pink-500 to-pink-400 text-white font-medium text-base sm:text-lg rounded-full overflow-hidden shadow-[0_0_40px_rgba(244,114,182,0.4)] hover:shadow-[0_0_60px_rgba(244,114,182,0.6)] transition-all duration-300 w-full sm:w-auto"
           >
             <span className="relative z-10 flex items-center gap-2">
               Explore Services
@@ -77,7 +77,7 @@ export default function StartupHero() {
 
           <Link
             href="/#portfolio"
-            className="inline-flex items-center justify-center px-8 py-4 bg-white/10 backdrop-blur-lg border border-white/20 text-white hover:bg-white/20 hover:text-pink-100 font-medium text-lg rounded-full transition-all duration-300"
+            className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-white/10 backdrop-blur-lg border border-white/20 text-white hover:bg-white/20 hover:text-pink-100 font-medium text-base sm:text-lg rounded-full transition-all duration-300 w-full sm:w-auto"
           >
             View Our Work
           </Link>

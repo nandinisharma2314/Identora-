@@ -195,7 +195,7 @@ export default function Testimonials() {
             Testimonials
             <Heart className="w-4 h-4" />
           </p>
-          <h2 className="heading text-4xl md:text-5xl font-bold text-[#2D1B1B] mt-2 leading-tight">
+          <h2 className="heading text-3xl sm:text-4xl md:text-5xl font-bold text-[#2D1B1B] mt-2 leading-tight">
             Kind Words From My <span className="text-pink-400 font-serif italic">Clients</span>
           </h2>
           <div className="flex justify-center mt-3">
@@ -311,7 +311,7 @@ export default function Testimonials() {
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-white rounded-3xl p-6 md:p-8 w-full max-w-lg shadow-[0_20px_60px_rgba(0,0,0,0.1)] relative"
+              className="bg-white rounded-3xl p-6 md:p-8 w-full max-w-lg shadow-[0_20px_60px_rgba(0,0,0,0.1)] relative max-h-[90vh] overflow-y-auto"
             >
               <button
                 onClick={() => setIsModalOpen(false)}

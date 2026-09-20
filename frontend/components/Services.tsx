@@ -138,7 +138,7 @@ export default function Services() {
             <p className="uppercase tracking-[2px] text-pink-500 text-sm font-semibold flex items-center justify-center gap-2">
               Our Expertise <Heart className="w-4 h-4" />
             </p>
-            <h2 className="heading text-4xl md:text-5xl font-bold text-[#2D1B1B] leading-tight mt-2">
+            <h2 className="heading text-3xl sm:text-4xl md:text-5xl font-bold text-[#2D1B1B] leading-tight mt-2">
               Creative solutions to elevate your <span className="text-pink-400">brand</span>.
             </h2>
             <div className="w-16 h-1 bg-gradient-to-r from-pink-300 to-pink-500 rounded-full mx-auto mt-4"></div>
@@ -245,7 +245,7 @@ export default function Services() {
                   <p className="text-pink-100 text-sm">Everything your brand needs to scale digitally.</p>
                 </div>
               </div>
-              <button className="mt-6 md:mt-0 px-6 py-3 bg-white text-pink-500 text-sm font-bold rounded-full shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300">
+              <button className="mt-6 md:mt-0 px-6 py-3 bg-white text-pink-500 text-sm font-bold rounded-full shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 w-full md:w-auto text-center">
                 Let's Grow Together
               </button>
             </motion.div>
@@ -292,21 +292,21 @@ export default function Services() {
             <p className="uppercase tracking-[4px] text-pink-500 font-semibold flex items-center gap-2">
               SERVICE <Heart className="w-5 h-5" />
             </p>
-            <h2 className="heading text-4xl md:text-5xl font-bold text-[#2D1B1B] leading-tight mt-3">
+            <h2 className="heading text-3xl sm:text-4xl md:text-5xl font-bold text-[#2D1B1B] leading-tight mt-3">
               {svc.title.split(" ")[0]} <span className="text-pink-400">{svc.title.split(" ").slice(1).join(" ")}</span>
             </h2>
-            <div className="w-28 h-1 bg-pink-300 rounded-full mt-4 mb-5"></div>
-            <p className="text-lg text-gray-600 leading-8">{svc.desc}</p>
+            <div className="w-20 sm:w-28 h-1 bg-pink-300 rounded-full mt-4 mb-4 sm:mb-5"></div>
+            <p className="text-base sm:text-lg text-gray-600 leading-relaxed sm:leading-8">{svc.desc}</p>
             
             {/* Stats */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
               {svc.stats.map((stat, idx) => (
                 <div key={idx} className="svc-stat-card bg-white rounded-2xl p-5 text-center shadow-sm">
-                  <div className="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3 text-pink-500">
+                  <div className="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3 text-pink-500">
                     {stat.icon}
                   </div>
-                  <p className="text-2xl font-bold text-[#2D1B1B]">{stat.value}</p>
-                  <p className="text-gray-500 text-sm mt-1">{stat.label}</p>
+                  <p className="text-xl sm:text-2xl font-bold text-[#2D1B1B]">{stat.value}</p>
+                  <p className="text-gray-500 text-xs sm:text-sm mt-1">{stat.label}</p>
                 </div>
               ))}
             </div>

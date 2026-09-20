@@ -132,7 +132,7 @@ export default function Contact() {
                 Let's Connect
                 <Heart className="w-4 h-4" />
               </p>
-              <h2 className="heading text-4xl lg:text-6xl font-bold text-[#2D1B1B] mt-4 leading-tight">
+              <h2 className="heading text-3xl sm:text-4xl lg:text-6xl font-bold text-[#2D1B1B] mt-4 leading-tight">
                 Have a Project in <span className="text-pink-400 font-serif italic">Mind?</span>
               </h2>
               <div className="w-16 h-1 rounded-full bg-gradient-to-r from-pink-300 to-pink-500 mt-5"></div>
@@ -186,7 +186,7 @@ export default function Contact() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8 }}
           >
-            <div className="bg-white/60 backdrop-blur-xl border border-pink-100 p-8 lg:p-10 rounded-[30px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden">
+            <div className="bg-white/60 backdrop-blur-xl border border-pink-100 p-6 sm:p-8 lg:p-10 rounded-[30px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden">
               {/* Decorative Blur */}
               <div className="absolute -top-10 -right-10 w-48 h-48 bg-pink-200 rounded-full blur-3xl opacity-40 pointer-events-none"></div>
               <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-purple-100 rounded-full blur-3xl opacity-40 pointer-events-none"></div>

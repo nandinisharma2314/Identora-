@@ -48,7 +48,7 @@ export default function Portfolio() {
             <Heart className="w-4 h-4" />
           </p>
 
-          <h2 className="heading text-4xl md:text-5xl lg:text-6xl text-[#2D1B1B] mt-2 leading-tight font-bold">
+          <h2 className="heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#2D1B1B] mt-2 leading-tight font-bold">
             A Glimpse of My <span className="text-pink-400 font-serif italic">Work</span>
           </h2>
 
@@ -67,7 +67,7 @@ export default function Portfolio() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mt-12"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mt-12"
         >
           {portfolioItems.map((item, index) => (
             <motion.article 

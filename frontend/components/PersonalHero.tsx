@@ -1,4 +1,5 @@
 import { ArrowRight, Heart, Target, PenTool, BarChart3, HeartHandshake } from "lucide-react";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -18,20 +19,20 @@ export default function Hero() {
               Helping brands grow through creativity & strategy.
             </p>
             <div className="flex gap-6 mt-12">
-              <a
-                href="#portfolio"
+              <Link
+                href="/#portfolio"
                 className="bg-pink-500 text-white px-8 py-4 rounded-xl shadow-lg flex items-center gap-3 hover:scale-105 duration-300"
               >
                 <span>View Portfolio</span>
                 <ArrowRight className="w-5 h-5" />
-              </a>
-              <a
-                href="#contact"
+              </Link>
+              <Link
+                href="/#contact"
                 className="border border-pink-300 px-8 py-4 rounded-xl flex items-center gap-3 hover:bg-pink-100 duration-300 cursor-pointer"
               >
                 <span>Let's Connect</span>
                 <Heart className="w-5 h-5 text-pink-500 fill-pink-500" />
-              </a>
+              </Link>
             </div>
           </div>
 
