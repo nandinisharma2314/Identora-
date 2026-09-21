@@ -167,7 +167,7 @@ export default function Contact() {
               </a>
 
               {/* Instagram */}
-              <a href="https://instagram.com/digie_levate" target="_blank" rel="noreferrer" className="group flex items-center gap-4 p-4 rounded-2xl bg-white/60 backdrop-blur-md border border-pink-100 shadow-[0_4px_20px_rgb(0,0,0,0.02)] hover:shadow-[0_10px_30px_rgba(236,127,158,0.15)] hover:-translate-y-1 transition-all duration-300">
+              <a href="https://instagram.com/identora_byharshika" target="_blank" rel="noreferrer" className="group flex items-center gap-4 p-4 rounded-2xl bg-white/60 backdrop-blur-md border border-pink-100 shadow-[0_4px_20px_rgb(0,0,0,0.02)] hover:shadow-[0_10px_30px_rgba(236,127,158,0.15)] hover:-translate-y-1 transition-all duration-300">
                 <div className="w-12 h-12 rounded-xl bg-pink-50 flex items-center justify-center text-pink-400 group-hover:bg-pink-500 group-hover:text-white transition-colors duration-300 shrink-0">
                   <i className="bi bi-instagram text-2xl"></i>
                 </div>
