@@ -173,7 +173,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-0.5">Instagram</p>
-                  <p className="text-base font-bold text-[#2D1B1B]">@digie_levate</p>
+                  <p className="text-base font-bold text-[#2D1B1B]">@identora_byharshika</p>
                 </div>
               </a>
             </motion.div>
